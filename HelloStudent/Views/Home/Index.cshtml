@@ -1,0 +1,388 @@
+﻿@{
+    ViewBag.Title = "Привет, студент!";
+}
+
+<div class="tail-content">
+    <div class="header clear">
+        <div class="main wrapper-header">
+            <div class="row-top-menu clear">
+                <div class="module">
+                    <ul class="menu-nav">
+                        <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
+                        <li class="item55"><a href="#"><span>Готовые работы</span></a></li>
+                        <li class="item56"><a href="#"><span>Студентам ТУСУР</span></a></li>
+                        <li class="item57"><a href="#"><span>Студентам других ВУЗов</span></a></li>
+                    </ul>
+                </div>
+                <div class="phone-number-container">
+                    <div class="phone-number">8 (555) 555 1324</div>
+                    <a class="call-order" href="#popup">Заказать звонок</a>
+                    <div style="display:none">
+                        <div id="popup" class="call-order-form popup">
+                            <div class="popup" style="width: 400px;">
+                                <h2>Оставьте заявку</h2>
+                                <p>И мы обязательно свяжемся с Вами</p>
+                                <table>
+                                    <tr>
+                                        <td class="labels">Имя</td>
+                                        <td>@Html.TextBox("Name")</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels">Телефон</td>
+                                        <td>@Html.TextBox("Phone")</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="labels"></td>
+                                        <td><a id="sendOrder" class="order-button" href="javascript:void(0);">Отправить заявку</a></td>
+                                    </tr>
+                                </table>
+                                @Html.Hidden("Training")
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:none">
+                        <div id="wasSentPopup" style="width: 400px;">
+                            Заявка отправлена. Спасибо.
+                        </div>
+                    </div>
+                    <a id="wasSent" href="#wasSentPopup"></a>
+                </div>
+            </div>
+            <div class="row-logo clear">
+                <h1 id="logo">
+                    <a href="#" title="Привет, студент!">
+                        <p class="logo-main">Привет, студент!</p>
+                        <p class="slogan">Текст слогана. Примерно столько слов, сколько здесь</p>
+                        <img title="HighSchool" src="@Url.Content("~/Content/img/logo.jpg")" style="display: none;" alt="logo"/>
+                    </a>
+                </h1>
+            </div>
+            <div class="indent-content">
+                <div class="top-box clear">
+                    <div class="top-box">
+                        <div class="border-top">
+                            <div class="border-bottom">
+                                <div class="border-left">
+                                    <div class="border-right">
+                                        <div class="corner-top-left">
+                                            <div class="corner-top-right">
+                                                <div class="corner-bottom-left">
+                                                    <div class="corner-bottom-right clear">
+                                                        <div class="top-box-inner">
+                                                            <div class="clear" style="margin-bottom: 30px;">
+                                                                <div class="col-1 fleft">
+                                                                    <img src="@Url.Content("~/Content/img/1page_img_1.png")" class="png" alt=""/>
+                                                                </div>
+                                                                <div class="col-2 fleft">
+                                                                    <h3>Welcome to our Website!</h3>
+                                                                    <em>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laantium, totam rem aperiam.</em>
+                                                                    <ul class="main-tesises">
+                                                                        <li>Выполняем работы <a>по любому предмету</a></li>
+                                                                        <li>Более <a>12 лет</a> успешной работы</li>
+                                                                        <li><a>Контроль качества</a> и проверка на плагиат каждой работы</li>
+                                                                        <li><a>Дисконтная программа</a> для постоянных клиентов</li>
+                                                                        <li><a>Персональный менеджер</a> для каждого клиента</li>
+                                                                    </ul>
+                                                                    <div class="row-col clear">
+                                                                        <a href="#" class="col-1a fleft">
+                                                                            <div class="inner-extra-indent">
+                                                                                Студентам других ВУЗов
+                                                                            </div>
+                                                                        </a>
+                                                                        <a href="#" class="col-2a fleft">
+                                                                            <div class="inner-extra-indent">
+                                                                                Студентам ТУСУРа
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content">
+                    <div class="clear">
+                        <div id="right">
+                            <div class="right-indent">
+                                <div class="clear">
+                                    <div class="wrapper-box module s1">
+                                        <div class="box-title ">
+                                            <div class="border-top">
+                                                <div class="border-bottom">
+                                                    <div class="corner-top-left">
+                                                        <div class="corner-top-right">
+                                                            <div class="corner-bottom-left">
+                                                                <div class="corner-bottom-right clear">
+                                                                    <h3>Latest programs</h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="main-box">
+                                            <div class="clear">
+                                                <ul class="list-1">
+                                                    <li class="list-wrapper-1"><strong>Step 1</strong><a href="#">Sed ut perspiciatis unde omnis </a></li>
+                                                    <li class="list-wrapper-2"><strong>Step 2</strong><a href="#">Voluptatem accusantium doloretiu </a></li>
+                                                    <li class="list-wrapper-3"><strong>Step 3</strong><a href="#">Totam rem aperiam, eaque ipsa </a></li>
+                                                </ul>
+                                                <div class="wrapper-link1"><span><a href="#">Read more</a></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wrapper-box module">
+                                        <div class="box-title ">
+                                            <div class="border-top">
+                                                <div class="border-bottom">
+                                                    <div class="corner-top-left">
+                                                        <div class="corner-top-right">
+                                                            <div class="corner-bottom-left">
+                                                                <div class="corner-bottom-right clear">
+                                                                    <h3>Testimonials</h3>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="main-box">
+                                            <div class="clear">
+                                                <div class="clear">
+                                                    <img src="@Url.Content("~/Content/img/1page_img_2.jpg")" class="img-indent" alt=""/>
+                                                    <strong class="br">Piter Pitherson says:</strong>
+                                                    Unde omnis iste natus erro oluptatem accusantium doloretium, tm aperiam, eaque ipsa quae veritatis e architecto beatae vitae dicta sunt explicabo.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="container">
+                            <div class="wrapper-container">
+                                <div class="clear">
+                                    <table class="blog" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td valign="top">
+                                                <table width="100%" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td valign="top" width="50%" class="article_column">
+                                                            <div class="content-indent-title">
+                                                                <div class="content-wrapper-title">
+                                                                    <table class="contentpaneopen">
+                                                                        <tr>
+                                                                            <td class="contentheading" width="100%"> Only patience &amp; persistence in learning give good results</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <div class="article-indent">
+                                                                <div class="clear">
+                                                                    <table class="contentpaneopen">
+                                                                        <tr>
+                                                                            <td valign="top" colspan="2">
+                                                                                Sed ut perspiciatis unde omnis iste natuserror sit voluptatem accusantium doloretium, totam rem aperiam, eaque ipsa quae veritatis quasi architecto beatae vitae.
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2"><div class="border-link"> <a href="/joomla_26072/index.php?option=com_content&amp;view=article&amp;id=45:joomla-community-portal&amp;catid=1:latest-news&amp;Itemid=50" class="readon">
+                                                                                                                          <span><span>Read more </span></span></a> </div></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <div class="article-separator-indent"><span class="article_separator">&nbsp;</span></div>
+                                                        </td>
+                                                        <td valign="top" width="50%" class="article_column column_separator">
+                                                            <div class="content-indent-title">
+                                                                <div class="content-wrapper-title">
+                                                                    <table class="contentpaneopen">
+                                                                        <tr>
+                                                                            <td class="contentheading" width="100%"> There are no bad students, there are bad teachers
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <div class="article-indent">
+                                                                <div class="clear">
+                                                                    <table class="contentpaneopen">
+                                                                        <tr>
+                                                                            <td valign="top" colspan="2">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloretium, totam rem aperiam, eaque ipsa quae veritatis et quasi architecto beatae vitae dicta sunt explicabo.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="2"><div class="border-link"> <a href="/joomla_26072/index.php?option=com_content&amp;view=article&amp;id=6:we-are-volunteers&amp;catid=1:latest-news&amp;Itemid=50" class="readon">
+                                                                                                                          <span><span>Read more </span></span></a> </div></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <div class="article-separator-indent"><span class="article_separator">&nbsp;</span></div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="clear">
+                                    <div class="extra-box module">
+                                        <div class="extra-box-separator">
+                                            <div class="box-title ">
+                                                <h3>Progressive teaching methods</h3>
+                                            </div>
+                                            <div class="main-box">
+                                                <div class="clear">
+                                                    <ul>
+                                                        <li><a href="#">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolo</a></li>
+                                                        <li><a href="#">Remque laudantium, totam rem aperiam, eaque ipsa quae ab illo </a></li>
+                                                        <li><a href="#">Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</a></li>
+                                                        <li><a href="#">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tail-footer">
+        <div class="main">
+            <div class="footer clear">
+                <div class="fright">
+                    <span>HighSchool 2009 &copy; <a href="http://www.joomla.org">Privacy policy.</a></span> All rights reserved. &nbsp;&nbsp;&nbsp; 
+                </div>
+                <div class="fleft">
+                    <div class="module">
+                        <ul class="menu-nav">
+                            <li class="item53"><a href="/joomla_26072/index.php?option=com_content&amp;view=frontpage&amp;Itemid=53"><span>Home</span></a></li>
+                            <li class="item54"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=29&amp;Itemid=54"><span>Services</span></a></li>
+                            <li class="item55"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=25&amp;Itemid=55"><span>Courses</span></a></li>
+                            <li class="item56"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=32&amp;Itemid=56"><span>Instructors</span></a></li>
+                            <li class="item57"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=32&amp;Itemid=57"><span>Offers</span></a></li>
+                            <li class="item58"><a href="/joomla_26072/index.php?option=com_content&amp;view=article&amp;id=27&amp;Itemid=58"><span>press centre</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.call-order').fancybox({
+        centerOnScroll: true
+    });
+    
+    $('#sendOrder').click(function () {
+        jVal.errors = false;
+        jVal.name();
+        jVal.phone();
+        jVal.sendIt();
+        return false;
+    });
+    
+    $("#wasSent").fancybox({
+        showCloseButton: true,
+        scrolling: 'no',
+        centerOnScroll: true,
+        onClosed: function () {
+
+        },
+        onComplete: function () {
+            $.fancybox.hideActivity();
+        }
+    });
+    
+    var jVal = {
+        'name': function () {
+            var ele = $('#Name');
+            var pos = ele.position();
+            ele.parent().append('<div id="nameInfo" class="info"></div>');
+            var nameInfo = $('#nameInfo');
+
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+            if ($.trim(ele.val()).length < 3) {
+                jVal.errors = true;
+                nameInfo.addClass('error').html('Напишите как к Вам обращаться').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jVal.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'phone': function () {
+            var ele = $('#Phone');
+            var pos = ele.position();
+            ele.parent().append('<div id="phoneInfo" class="info"></div>');
+            var phoneInfo = $('#phoneInfo');
+
+            phoneInfo.css({
+                top: pos.top + 4,
+                left: pos.left + ele.width() + 25
+            });
+
+            var patt = /^([\+]{1})?[0-9\-]*$/i;
+
+            if (ele.val().length != 0 && (ele.val().length > 15 || ele.val().length < 5 || !patt.test(ele.val()))) {
+                jVal.errors = true;
+                phoneInfo.addClass('error').html('Введите корректный номер телефона').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                phoneInfo.prev().addClass('error-input');
+            } else if (ele.val().length == 0) {
+                jVal.errors = true;
+                phoneInfo.addClass('error').html('Введите номер телефона').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                phoneInfo.prev().addClass('error-input');
+            } else {
+                phoneInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                phoneInfo.prev().removeClass('error-input');
+            }
+        },
+        'sendIt': function () {
+            if (!jVal.errors) {
+                $.ajax({
+                    url: '@Url.Action("CallOrder", "Home")',
+                    type: 'POST',
+                    data: {
+                        Name: $('#popup #Name').val(),
+                        Phone: $('#popup #Phone').val()
+                    },
+                    success: function (data) {
+                        $('#wasSent').click();
+                    }
+                });
+
+                $.fancybox.close();
+                $.fancybox.showActivity();
+            }
+        }
+    };
+</script>
