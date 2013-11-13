@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Студентам ТУСУРа";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+@model HelloStudent.Models.TusurOrderModel
+
+<div class="order-container">
+    Ваш заказ принят, в ближайшее время мы с Вами свяжемся
+</div>
+
+<script type="text/javascript">
+    $('#main_table td a').click(function() {
+        var cipher = $(this).parent().prev().html();
+        $('#Cipher').val(cipher);
+    });
+</script>

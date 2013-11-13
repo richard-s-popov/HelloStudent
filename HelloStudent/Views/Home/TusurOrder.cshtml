@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "Студентам ТУСУРа";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+@model HelloStudent.Models.TusurOrderModel
+
+<div class="order-container">
+    <div id="specialities">
+        <table id="main_table">
+            <thead>
+                <tr>
+                    <th class="code">Шифр</th>
+                    <th>Название специальности</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="subheader">
+                    <td colspan="2">
+                        Программы подготовки бакалавров
+                    </td>
+                </tr>
+                <tr>
+                    <td>030300</td>
+                    <td><a href="javascript:void(0);">Психология</a>  </td>
+                </tr>
+                <tr>
+                    <td>030900.62</td>
+                    <td><a href="javascript:void(0);">Юриспруденция</a>  </td>
+                </tr>
+                <tr>
+                    <td>080100.62</td>
+                    <td><a href="javascript:void(0);">Экономика с профилем подготовки "Финансы и кредит"</a>  </td>
+                </tr>
+                <tr>
+                    <td>080200.62</td>
+                    <td><a href="javascript:void(0);">Менеджмент с профилем подготовки "Управление проектом"</a>  </td>
+                </tr>
+                <tr>
+                    <td>080500.62</td>
+                    <td><a href="javascript:void(0);">Бизнес-информатика</a>  </td>
+                </tr>
+                <tr>
+                    <td>081100.62</td>
+                    <td><a href="javascript:void(0);">Государственное и муниципальное управление</a>  </td>
+                </tr>
+                <tr>
+                    <td>210100.62</td>
+                    <td><a href="javascript:void(0);">Электроника и наноэлектроника с профилем подготовки "Промышленная электроника"</a>  </td>
+                </tr>
+                <tr>
+                    <td>210400.62</td>
+                    <td><a href="javascript:void(0);">Радиотехника с профилем подготовки "Радиотехнические средства передачи, приема и обработки сигналов"</a>  </td>
+                </tr>
+                <tr>
+                    <td>210700.62</td>
+                    <td><a href="javascript:void(0);">Инфокоммуникационные технологии и системы связи с профилем подготовки "Системы радиосвязи и радиодоступа"</a>  </td>
+                </tr>
+                <tr>
+                    <td>220400.62</td>
+                    <td><a href="javascript:void(0);">Управление в технических системах</a>  </td>
+                </tr>
+                <tr>
+                    <td>230100.62</td>
+                    <td><a href="javascript:void(0);">Информатика и вычислительная техника с профилем подготовки "Программное обеспечение средств вычислительной техники и автоматизированных систем"</a>  </td>
+                </tr>
+                <tr>
+                    <td>230100.62</td>
+                    <td><a href="javascript:void(0);">Информатика и вычислительная техника с профилем подготовки "Системы автоматизированного проектирования"</a>  </td>
+                </tr>
+                <tr>
+                    <td>230700.62</td>
+                    <td><a href="javascript:void(0);">Прикладная информатика</a>  </td>
+                </tr>
+                <tr>
+                    <td>231000.62</td>
+                    <td><a href="javascript:void(0);">Программная инженерия</a>  </td>
+                </tr>
+                <tr class="subheader">
+                    <td colspan="2">
+                        Программы подготовки специалистов
+                    </td>
+                </tr>
+                <tr>
+                    <td>030501</td>
+                    <td><a href="javascript:void(0);">Юриспруденция</a>  </td>
+                </tr>
+                <tr>
+                    <td>080105</td>
+                    <td><a href="javascript:void(0);">Финансы и кредит</a>  </td>
+                </tr>
+                <tr>
+                    <td>080502</td>
+                    <td><a href="javascript:void(0);">Экономика и управление на предприятии (в машиностроении)</a>  </td>
+                </tr>
+                <tr>
+                    <td>080503</td>
+                    <td><a href="javascript:void(0);">Антикризисное управление</a>  </td>
+                </tr>
+                <tr>
+                    <td>080504</td>
+                    <td><a href="javascript:void(0);">Государственное и муниципальное управление</a>  </td>
+                </tr>
+                <tr>
+                    <td>080801</td>
+                    <td><a href="javascript:void(0);">Прикладная информатика в экономике</a>  </td>
+                </tr>
+                <tr>
+                    <td>210105</td>
+                    <td><a href="javascript:void(0);">Электронные приборы и устройства</a>  </td>
+                </tr>
+                <tr>
+                    <td>210106</td>
+                    <td><a href="javascript:void(0);">Промышленная электроника</a>  </td>
+                </tr>
+                <tr>
+                    <td>210202</td>
+                    <td><a href="javascript:void(0);">Проектирование и технология электронно-вычислительных средств</a>  </td>
+                </tr>
+                <tr>
+                    <td>210302</td>
+                    <td><a href="javascript:void(0);">Радиотехника</a>  </td>
+                </tr>
+                <tr>
+                    <td>210303</td>
+                    <td><a href="javascript:void(0);">Бытовая радиоэлектронная аппаратура</a>  </td>
+                </tr>
+                <tr>
+                    <td>210312</td>
+                    <td><a href="javascript:void(0);">Аудиовизуальная техника</a>  </td>
+                </tr>
+                <tr>
+                    <td>210405</td>
+                    <td><a href="javascript:void(0);">Радиосвязь, радиовещание и телевидение</a>  </td>
+                </tr>
+                <tr>
+                    <td>220201</td>
+                    <td><a href="javascript:void(0);">Управление и информатика в технических системах</a>  </td>
+                </tr>
+                <tr>
+                    <td>230102</td>
+                    <td><a href="javascript:void(0);">Автоматизированные системы обработки информации и управления (только для граждан РФ)</a>  </td>
+                </tr>
+                <tr>
+                    <td>230104</td>
+                    <td><a href="javascript:void(0);">Системы автоматизированного проектирования</a>  </td>
+                </tr>
+                <tr>
+                    <td>230105</td>
+                    <td><a href="javascript:void(0);">Программное обеспечение ВТ и АС</a>  </td>
+                </tr>
+                <tr class="subheader">
+                    <td colspan="2">
+                        Программы профессиональной переподготовки
+                    </td>
+                </tr>
+                <tr>
+                    <td>002301</td>
+                    <td><a href="javascript:void(0);">Информационные системы и технологии</a>  </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sidebar">
+        <div class="popup" style="width: 400px;">
+            <h2>Заказ работы</h2>
+            <p>Пожалуйста, заполните поля и отправьте заказ.<br />Мы сразу же с Вами свяжемся.</p>
+            @using (Html.BeginForm("TusurOrderFinish", "Home", FormMethod.Post, new { @id = "tusurOrderForm" }))
+            {
+                <table>
+                    <tr>
+                        <td class="labels">ФИО</td>
+                        <td>@Html.TextBoxFor(m => m.Fio)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Email</td>
+                        <td>@Html.TextBoxFor(m => m.Email)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Телефон</td>
+                        <td>@Html.TextBoxFor(m => m.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Шифр</td>
+                        <td>@Html.TextBoxFor(m => m.Cipher)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Предмет</td>
+                        <td>@Html.TextBoxFor(m => m.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Вид работы</td>
+                        <td>@Html.DropDownListFor(m => m.Type, Model.WorkTypesList)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Срочность</td>
+                        <td>@Html.DropDownListFor(m => m.Urgency, Model.UrgencyList)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Дополнительно</td>
+                        <td>@Html.TextAreaFor(m => m.Description)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels"></td>
+                        <td>
+                            <a id="sendOrder" class="order-button" href="javascript:void(0);" onclick="$('#tusurOrderForm').submit();">Отправить заявку</a>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#main_table td a').click(function() {
+        var cipher = $(this).parent().prev().html();
+        $('#Cipher').val(cipher);
+    });
+</script>

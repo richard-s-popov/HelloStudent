@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+      <meta name="robots" content="index, follow"/>
+      <meta name="keywords" content="joomla, Joomla"/>
+      <meta name="description" content="Joomla! - the dynamic portal engine and content management system"/>
+      <meta name="generator" content="Joomla! 1.5 - Open Source Content Management"/>
+      <title>@ViewBag.Title</title>
+      <link href="/joomla_26072/templates/theme376/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+      <script type="text/javascript" src="@Url.Content("~/Scripts/mootools.js")"></script>
+       <script type="text/javascript" src="@Url.Content("~/Scripts/caption.js")"></script>
+      @Styles.Render("~/Content/css")
+      @Scripts.Render("~/bundles/modernizr")
+      @Scripts.Render("~/bundles/jquery")
+      @RenderSection("scripts", required: false)
+       <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.fancybox-1.3.4.js")"></script>
+      <link rel="stylesheet" href="@Url.Content("~/Content/template.css")" type="text/css"/>
+       <link rel="stylesheet" href="@Url.Content("~/Content/constant.css")" type="text/css"/>
+       <link rel="stylesheet" href="@Url.Content("~/Content/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" />
+      <!--[if IE 6]>
+      <script type="text/javascript" src="/joomla_26072/templates/theme376/scripts/ie_png.js"></script>
+      <script type="text/javascript">
+         ie_png.fix('.png');
+      </script>
+      <![endif]-->
+   </head>
+    <body id="body">
+        <div class="tail-content">
+            <div class="header clear">
+                <div class="main wrapper-header-min">
+                    <div class="row-top-menu clear">
+                        <div class="module">
+                            <ul class="menu-nav">
+                                <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
+                                <li class="item55"><a href="#"><span>Готовые работы</span></a></li>
+                                <li class="item56"><a href="#"><span>Заказать работу</span></a></li>
+                                <li class="item57"><a href="#"><span>Студентам ТУСУР</span></a></li>
+                            </ul>
+                        </div>
+                        <div class="phone-number-container">
+                            <div class="phone-number">8 (555) 555 1324</div>
+                            <a class="call-order" href="#popup">Заказать звонок</a>
+                            <div style="display:none">
+                                <div id="popup" class="call-order-form popup">
+                                    <div class="popup" style="width: 400px;">
+                                        <h2>Оставьте заявку</h2>
+                                        <p>И мы обязательно свяжемся с Вами</p>
+                                        <table>
+                                            <tr>
+                                                <td class="labels">Имя</td>
+                                                <td>@Html.TextBox("Name")</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="labels">Телефон</td>
+                                                <td>@Html.TextBox("Phone")</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="labels"></td>
+                                                <td><a id="sendOrder" class="order-button" href="javascript:void(0);">Отправить заявку</a></td>
+                                            </tr>
+                                        </table>
+                                        @Html.Hidden("Training")
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display:none">
+                                <div id="wasSentPopup" style="width: 400px;">
+                                    Заявка отправлена. Спасибо.
+                                </div>
+                            </div>
+                            <a id="wasSent" href="#wasSentPopup"></a>
+                        </div>
+                    </div>
+                    <div class="row-logo clear" style="height: 180px;">
+                        <h1 id="logo">
+                            <a href="#" title="Привет, студент!">
+                                <p class="logo-main">Привет, студент!</p>
+                                <p class="slogan">Текст слогана. Примерно столько слов, сколько здесь</p>
+                                <img title="HighSchool" src="@Url.Content("~/Content/img/logo.jpg")" style="display: none;" alt="logo"/>
+                            </a>
+                        </h1>
+                    </div>
+                    @RenderBody()
+                    <script type="text/javascript">
+                        $('.call-order').fancybox({
+                            centerOnScroll: true
+                        });
+
+                        $('#sendOrder').click(function () {
+                            jVal.errors = false;
+                            jVal.name();
+                            jVal.phone();
+                            jVal.sendIt();
+                            return false;
+                        });
+
+                        $("#wasSent").fancybox({
+                            showCloseButton: true,
+                            scrolling: 'no',
+                            centerOnScroll: true,
+                            onClosed: function () {
+
+                            },
+                            onComplete: function () {
+                                $.fancybox.hideActivity();
+                            }
+                        });
+
+                        var jVal = {
+                            'name': function () {
+                                var ele = $('#Name');
+                                var pos = ele.position();
+                                ele.parent().append('<div id="nameInfo" class="info"></div>');
+                                var nameInfo = $('#nameInfo');
+
+                                nameInfo.css({
+                                    top: pos.top - 1,
+                                    left: pos.left + ele.width() + 15
+                                });
+                                if ($.trim(ele.val()).length < 3) {
+                                    jVal.errors = true;
+                                    nameInfo.addClass('error').html('Напишите как к Вам обращаться').show();
+                                    nameInfo.prev().addClass('error-input');
+                                    ele.removeClass('normal').addClass('wrong');
+                                } else if (ele.val().length > 255) {
+                                    jVal.errors = true;
+                                    nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                                    ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                                    nameInfo.prev().addClass('error-input');
+                                } else {
+                                    nameInfo.removeClass('error');
+                                    ele.removeClass('wrong').addClass('normal');
+                                    nameInfo.prev().removeClass('error-input');
+                                }
+                            },
+                            'phone': function () {
+                                var ele = $('#Phone');
+                                var pos = ele.position();
+                                ele.parent().append('<div id="phoneInfo" class="info"></div>');
+                                var phoneInfo = $('#phoneInfo');
+
+                                phoneInfo.css({
+                                    top: pos.top + 4,
+                                    left: pos.left + ele.width() + 25
+                                });
+
+                                var patt = /^([\+]{1})?[0-9\-]*$/i;
+
+                                if (ele.val().length != 0 && (ele.val().length > 15 || ele.val().length < 5 || !patt.test(ele.val()))) {
+                                    jVal.errors = true;
+                                    phoneInfo.addClass('error').html('Введите корректный номер телефона').show();
+                                    ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                                    phoneInfo.prev().addClass('error-input');
+                                } else if (ele.val().length == 0) {
+                                    jVal.errors = true;
+                                    phoneInfo.addClass('error').html('Введите номер телефона').show();
+                                    ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                                    phoneInfo.prev().addClass('error-input');
+                                } else {
+                                    phoneInfo.removeClass('error');
+                                    ele.removeClass('wrong').addClass('normal');
+                                    phoneInfo.prev().removeClass('error-input');
+                                }
+                            },
+                            'sendIt': function () {
+                                if (!jVal.errors) {
+                                    $.ajax({
+                                        url: '@Url.Action("CallOrder", "Home")',
+                                        type: 'POST',
+                                        data: {
+                                            Name: $('#popup #Name').val(),
+                                            Phone: $('#popup #Phone').val()
+                                        },
+                                        success: function (data) {
+                                            $('#wasSent').click();
+                                        }
+                                    });
+
+                                    $.fancybox.close();
+                                    $.fancybox.showActivity();
+                                }
+                            }
+                        };
+                    </script>
+                </div>
+            </div>
+            <div class="tail-footer">
+                <div class="main">
+                    <div class="footer clear">
+                        <div class="fright">
+                            <span>HighSchool 2009 &copy; <a href="http://www.joomla.org">Privacy policy.</a></span> All rights reserved. &nbsp;&nbsp;&nbsp; 
+                        </div>
+                        <div class="fleft">
+                            <div class="module">
+                                <ul class="menu-nav">
+                                    <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
+                                    <li class="item55"><a href="#"><span>Готовые работы</span></a></li>
+                                    <li class="item56"><a href="#"><span>Заказать работу</span></a></li>
+                                    <li class="item57"><a href="#"><span>Студентам ТУСУР</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

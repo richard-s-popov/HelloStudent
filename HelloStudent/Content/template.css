@@ -1084,6 +1084,17 @@ fieldset.word, fieldset.only {
     display: block;
 }
 
+.popup table select {
+    width: 184px;
+    padding: 5px;
+    height: 30px;
+    display: block;
+}
+
+.popup table textarea {
+    width: 182px;
+}
+
 .order-button {
     position: relative;
     padding: 10px 20px;
@@ -1567,6 +1578,59 @@ label.remember {
 
 .wrapper-header {
 	background:url(../Content/img/wrapper_header.jpg) 0 0 no-repeat;
+}
+
+.wrapper-header-min {
+	background:url(../Content/img/wrapper_header_min.png) 0 0 no-repeat;
+}
+
+.order-container {
+    min-height: 600px;
+    width: 900px;
+    margin: 230px auto 100px;
+}
+
+.sidebar {
+    float: right;
+    width: 300px;
+    position: relative;
+    margin-top: 50px;
+}
+
+#specialities {
+    float: left;
+    margin-bottom: 100px;
+}
+
+table#main_table {
+    width: 500px;
+}
+
+table#main_table tr{
+    height: 30px;
+}
+table#main_table td{
+    color: #217E9C;
+    font: 14px Arial, sans-serif;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+table#main_table td a{
+    font: 14px Arial, sans-serif;
+    color: #2c9abe;
+}
+table#main_table th{
+    font: oblique 16px Georgia,serif;
+    color: #5C5C5C;
+    text-align: left;
+}
+table#main_table th.code{
+    width: 80px;
+}
+table#main_table tr.subheader td{
+    font: 18px Arial, sans-serif;
+    color: #000;
+    padding: 27px 0 8px 82px;
 }
 
 .row-logo {

@@ -10,8 +10,8 @@
                     <ul class="menu-nav">
                         <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
                         <li class="item55"><a href="#"><span>Готовые работы</span></a></li>
-                        <li class="item56"><a href="#"><span>Студентам ТУСУР</span></a></li>
-                        <li class="item57"><a href="#"><span>Студентам других ВУЗов</span></a></li>
+                        <li class="item56"><a href="#"><span>Заказать работу</span></a></li>
+                        <li class="item57"><a href="@Url.Action("TusurOrder", "Home")"><span>Студентам ТУСУР</span></a></li>
                     </ul>
                 </div>
                 <div class="phone-number-container">
@@ -86,10 +86,10 @@
                                                                     <div class="row-col clear">
                                                                         <a href="#" class="col-1a fleft">
                                                                             <div class="inner-extra-indent">
-                                                                                Студентам других ВУЗов
+                                                                                Заказать работу
                                                                             </div>
                                                                         </a>
-                                                                        <a href="#" class="col-2a fleft">
+                                                                        <a href="@Url.Action("TusurOrder", "Home")" class="col-2a fleft">
                                                                             <div class="inner-extra-indent">
                                                                                 Студентам ТУСУРа
                                                                             </div>
@@ -271,12 +271,10 @@
                 <div class="fleft">
                     <div class="module">
                         <ul class="menu-nav">
-                            <li class="item53"><a href="/joomla_26072/index.php?option=com_content&amp;view=frontpage&amp;Itemid=53"><span>Home</span></a></li>
-                            <li class="item54"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=29&amp;Itemid=54"><span>Services</span></a></li>
-                            <li class="item55"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=25&amp;Itemid=55"><span>Courses</span></a></li>
-                            <li class="item56"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=32&amp;Itemid=56"><span>Instructors</span></a></li>
-                            <li class="item57"><a href="/joomla_26072/index.php?option=com_content&amp;view=category&amp;layout=blog&amp;id=32&amp;Itemid=57"><span>Offers</span></a></li>
-                            <li class="item58"><a href="/joomla_26072/index.php?option=com_content&amp;view=article&amp;id=27&amp;Itemid=58"><span>press centre</span></a></li>
+                            <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
+                            <li class="item55"><a href="#"><span>Готовые работы</span></a></li>
+                            <li class="item56"><a href="#"><span>Заказать работу</span></a></li>
+                            <li class="item57"><a href="@Url.Action("TusurOrder", "Home")"><span>Студентам ТУСУР</span></a></li>
                         </ul>
                     </div>
                 </div>

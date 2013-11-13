@@ -127,9 +127,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Core\EmailService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailMessage.cs" />
+    <Compile Include="Models\TusurOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +191,7 @@
     <Content Include="Content\img\separator_menu.gif" />
     <Content Include="Content\img\tail_content.jpg" />
     <Content Include="Content\img\top_menu_wrapper_button.gif" />
+    <Content Include="Content\img\wrapper_header_min.png" />
     <Content Include="Content\img\wrapper_header.jpg" />
     <Content Include="Content\template.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -280,10 +284,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\TusurOrder.cshtml" />
+    <Content Include="Views\Home\TusurOrderFinish.cshtml" />
+    <Content Include="Views\Shared\_LayoutMin.cshtml" />
+    <Content Include="Views\Home\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
