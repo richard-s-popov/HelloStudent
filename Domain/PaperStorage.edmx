@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HelloStudentModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Хранилище HelloStudentModelContainer">
+          <EntitySet Name="Papers" EntityType="Хранилище HelloStudentModel.Papers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PaperTypes" EntityType="Хранилище HelloStudentModel.PaperTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subjects" EntityType="Хранилище HelloStudentModel.Subjects" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Papers_PaperTypes" Association="Хранилище HelloStudentModel.FK_Papers_PaperTypes">
+            <End Role="PaperTypes" EntitySet="PaperTypes" />
+            <End Role="Papers" EntitySet="Papers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Papers_Subjects" Association="Хранилище HelloStudentModel.FK_Papers_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Papers" EntitySet="Papers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Papers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="1023" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Subject" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PaperTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_Papers_PaperTypes">
+          <End Role="PaperTypes" Type="Хранилище HelloStudentModel.PaperTypes" Multiplicity="1" />
+          <End Role="Papers" Type="Хранилище HelloStudentModel.Papers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaperTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Papers">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Papers_Subjects">
+          <End Role="Subjects" Type="Хранилище HelloStudentModel.Subjects" Multiplicity="1" />
+          <End Role="Papers" Type="Хранилище HelloStudentModel.Papers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Papers">
+              <PropertyRef Name="Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HelloStudentModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HelloStudentEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Papers" EntityType="HelloStudentModel.Paper" />
+          <EntitySet Name="PaperTypes" EntityType="HelloStudentModel.PaperType" />
+          <EntitySet Name="Subjects" EntityType="HelloStudentModel.Subject" />
+          <AssociationSet Name="FK_Papers_PaperTypes" Association="HelloStudentModel.FK_Papers_PaperTypes">
+            <End Role="PaperTypes" EntitySet="PaperTypes" />
+            <End Role="Papers" EntitySet="Papers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Papers_Subjects" Association="HelloStudentModel.FK_Papers_Subjects">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Papers" EntitySet="Papers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Paper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1023" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Subject" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="PaperType" Relationship="HelloStudentModel.FK_Papers_PaperTypes" FromRole="Papers" ToRole="PaperTypes" />
+          <NavigationProperty Name="Subject1" Relationship="HelloStudentModel.FK_Papers_Subjects" FromRole="Papers" ToRole="Subjects" />
+        </EntityType>
+        <EntityType Name="PaperType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Papers" Relationship="HelloStudentModel.FK_Papers_PaperTypes" FromRole="PaperTypes" ToRole="Papers" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Papers" Relationship="HelloStudentModel.FK_Papers_Subjects" FromRole="Subjects" ToRole="Papers" />
+        </EntityType>
+        <Association Name="FK_Papers_PaperTypes">
+          <End Role="PaperTypes" Type="HelloStudentModel.PaperType" Multiplicity="1" />
+          <End Role="Papers" Type="HelloStudentModel.Paper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaperTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Papers">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Papers_Subjects">
+          <End Role="Subjects" Type="HelloStudentModel.Subject" Multiplicity="1" />
+          <End Role="Papers" Type="HelloStudentModel.Paper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Papers">
+              <PropertyRef Name="Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HelloStudentModelContainer" CdmEntityContainer="HelloStudentEntities">
+          <EntitySetMapping Name="Papers">
+            <EntityTypeMapping TypeName="HelloStudentModel.Paper">
+              <MappingFragment StoreEntitySet="Papers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaperTypes">
+            <EntityTypeMapping TypeName="HelloStudentModel.PaperType">
+              <MappingFragment StoreEntitySet="PaperTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="HelloStudentModel.Subject">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

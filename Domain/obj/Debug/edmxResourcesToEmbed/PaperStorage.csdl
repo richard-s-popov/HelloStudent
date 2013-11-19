@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HelloStudentModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HelloStudentEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Papers" EntityType="HelloStudentModel.Paper" />
+    <EntitySet Name="PaperTypes" EntityType="HelloStudentModel.PaperType" />
+    <EntitySet Name="Subjects" EntityType="HelloStudentModel.Subject" />
+    <AssociationSet Name="FK_Papers_PaperTypes" Association="HelloStudentModel.FK_Papers_PaperTypes">
+      <End Role="PaperTypes" EntitySet="PaperTypes" />
+      <End Role="Papers" EntitySet="Papers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Papers_Subjects" Association="HelloStudentModel.FK_Papers_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Papers" EntitySet="Papers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Paper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="1023" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Subject" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="PaperType" Relationship="HelloStudentModel.FK_Papers_PaperTypes" FromRole="Papers" ToRole="PaperTypes" />
+    <NavigationProperty Name="Subject1" Relationship="HelloStudentModel.FK_Papers_Subjects" FromRole="Papers" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="PaperType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Papers" Relationship="HelloStudentModel.FK_Papers_PaperTypes" FromRole="PaperTypes" ToRole="Papers" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Papers" Relationship="HelloStudentModel.FK_Papers_Subjects" FromRole="Subjects" ToRole="Papers" />
+  </EntityType>
+  <Association Name="FK_Papers_PaperTypes">
+    <End Role="PaperTypes" Type="HelloStudentModel.PaperType" Multiplicity="1" />
+    <End Role="Papers" Type="HelloStudentModel.Paper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaperTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Papers">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Papers_Subjects">
+    <End Role="Subjects" Type="HelloStudentModel.Subject" Multiplicity="1" />
+    <End Role="Papers" Type="HelloStudentModel.Paper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Papers">
+        <PropertyRef Name="Subject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

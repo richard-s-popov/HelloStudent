@@ -1,0 +1,65 @@
+﻿@using HelloStudent.Models
+@model HelloStudent.Models.TypesListModel
+
+@{
+    ViewBag.Title = "Готовые работы";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+<div class="order-container">
+    <table id="main_table">
+        <thead>
+            <tr>
+                <th>Вид работ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TypeModel t in Model.TypesList)
+            {
+                <tr>
+                    <td><a href="javascript:void(0);">@t.TypePaperName</a></td>
+                </tr>
+                if (t.SubjectsList.Any())
+                {
+                    <tr>
+                        <td>
+                            <table id="main_table" style="margin-left: 30px;">
+                                <tbody>
+                                    @foreach (var s in t.SubjectsList)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a class="subject" subjectId="@s.SubjectId" typeId="@s.TypeId" href="javascript:void(0);">@s.SubjectName</a>
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none;">
+                                            <td></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $('.subject').click(function () {
+        var tr = $(this).parent().parent().next();
+        $.ajax({
+            url: '@Url.Action("GetPapersList", "Home")',
+            type: 'POST',
+            data: {
+                typeId: $(this).attr('typeId'),
+                subjectId: $(this).attr('subjectId')
+            },
+            success: function(data) {
+                tr.children().html(data);
+                tr.show();
+            }
+        });
+    });
+</script>

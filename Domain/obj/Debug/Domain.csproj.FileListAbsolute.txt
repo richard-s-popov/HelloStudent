@@ -1,0 +1,9 @@
+C:\work\HelloStudent\Domain\bin\Debug\Domain.dll.config
+C:\work\HelloStudent\Domain\bin\Debug\Domain.dll
+C:\work\HelloStudent\Domain\bin\Debug\Domain.pdb
+C:\work\HelloStudent\Domain\bin\Debug\EntityFramework.dll
+C:\work\HelloStudent\Domain\bin\Debug\EntityFramework.xml
+C:\work\HelloStudent\Domain\bin\Debug\ru\EntityFramework.resources.dll
+C:\work\HelloStudent\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
+C:\work\HelloStudent\Domain\obj\Debug\Domain.dll
+C:\work\HelloStudent\Domain\obj\Debug\Domain.pdb

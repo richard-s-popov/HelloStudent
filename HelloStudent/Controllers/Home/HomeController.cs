@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Domain;
 using HelloStudent.Core;
 using HelloStudent.Models;
 
@@ -143,6 +144,107 @@ namespace HelloStudent.Controllers.Home
                     true);
 
             return RedirectToAction("TusurOrderFinish");
+        }
+
+        public ActionResult Papers()
+        {
+            var types = new DBService().GetTypes();
+            var model = new TypesListModel
+                {
+                    TypesList = types.Select(x => new TypeModel
+                        {
+                            TypId = x.Id,
+                            TypePaperName = x.Name,
+                            SubjectsList = new DBService().GetSubjectsByType(x.Id).Select(s => new SubjectModel
+                                {
+                                    SubjectName = s.Name,
+                                    SubjectId = s.Id,
+                                    TypeId = x.Id
+                                }).ToList()
+                        }).ToList()
+                };
+
+            return View(model);
+        }
+
+        public ActionResult GetPapersList(int typeId, int subjectId)
+        {
+            var papers = new DBService().GetPapersByTypeAndSubject(typeId, subjectId);
+            var model = new PapersListModel
+                {
+                    PapersList = papers.Select(x => new PaperModel
+                        {
+                            PaperId = x.Id,
+                            PaperName = x.Name
+                        }).ToList()
+                };
+
+            return PartialView(model);
+        }
+
+        public ActionResult AddPaperForm()
+        {
+            var types = new DBService().GetTypes();
+            var subjects = new DBService().GetSubjects();
+
+            var model = new PaperModel
+            {
+                TypesList = types.Select(x => new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                    }).ToList(),
+                SubjectsList = subjects.Select(x => new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.Id.ToString()
+                    }).ToList()
+            };
+
+            return View(model);
+        }
+
+        public ActionResult AddPaperFinish(PaperModel model)
+        {
+            var paper = new Paper
+                {
+                    Name = model.PaperName,
+                    Description = model.Description,
+                    Type = model.TypeId,
+                    Subject = model.SubjectId,
+                    FileName = model.File.FileName
+                };
+
+            if (paper.Type == 0)
+            {
+                var type = new PaperType
+                    {
+                        Name = model.Type
+                    };
+
+                new DBService().AddType(type);
+
+                paper.Type = type.Id;
+            }
+
+            if (paper.Subject == 0)
+            {
+                var subject = new Subject
+                {
+                    Name = model.Subject
+                };
+
+                new DBService().AddSubject(subject);
+
+                paper.Subject = subject.Id;
+            }
+
+            new DBService().AddPaper(paper);
+
+            string nameAndLocation = "~/Files/" + model.File.FileName;
+            model.File.SaveAs(Server.MapPath(nameAndLocation));
+
+            return View();
         }
     }
 }

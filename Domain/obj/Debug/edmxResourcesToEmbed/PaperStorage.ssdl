@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище HelloStudentModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Хранилище HelloStudentModelContainer">
+    <EntitySet Name="Papers" EntityType="Хранилище HelloStudentModel.Papers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PaperTypes" EntityType="Хранилище HelloStudentModel.PaperTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects" EntityType="Хранилище HelloStudentModel.Subjects" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Papers_PaperTypes" Association="Хранилище HelloStudentModel.FK_Papers_PaperTypes">
+      <End Role="PaperTypes" EntitySet="PaperTypes" />
+      <End Role="Papers" EntitySet="Papers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Papers_Subjects" Association="Хранилище HelloStudentModel.FK_Papers_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Papers" EntitySet="Papers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Papers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="1023" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Subject" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="PaperTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <Association Name="FK_Papers_PaperTypes">
+    <End Role="PaperTypes" Type="Хранилище HelloStudentModel.PaperTypes" Multiplicity="1" />
+    <End Role="Papers" Type="Хранилище HelloStudentModel.Papers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaperTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Papers">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Papers_Subjects">
+    <End Role="Subjects" Type="Хранилище HelloStudentModel.Subjects" Multiplicity="1" />
+    <End Role="Papers" Type="Хранилище HelloStudentModel.Papers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Papers">
+        <PropertyRef Name="Subject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

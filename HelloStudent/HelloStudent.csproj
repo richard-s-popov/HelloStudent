@@ -127,11 +127,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Core\DBService.cs" />
     <Compile Include="Core\EmailService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailMessage.cs" />
+    <Compile Include="Models\PapersModel.cs" />
     <Compile Include="Models\TusurOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -288,12 +290,24 @@
     <Content Include="Views\Home\TusurOrderFinish.cshtml" />
     <Content Include="Views\Shared\_LayoutMin.cshtml" />
     <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Home\Papers.cshtml" />
+    <Content Include="Views\Home\Subjects.cshtml" />
+    <Content Include="Views\Home\GetPapersList.cshtml" />
+    <Content Include="Views\Home\AddPaperForm.cshtml" />
+    <Content Include="Views\Home\AddPaperFinish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{078d93ab-84d1-46c4-98cf-e2f07712360d}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

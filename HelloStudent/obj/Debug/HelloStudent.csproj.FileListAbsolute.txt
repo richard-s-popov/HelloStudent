@@ -40,3 +40,5 @@ C:\work\HelloStudent\HelloStudent\bin\ru\System.Web.WebPages.Razor.resources.dll
 C:\work\HelloStudent\HelloStudent\obj\Debug\HelloStudent.csprojResolveAssemblyReference.cache
 C:\work\HelloStudent\HelloStudent\obj\Debug\HelloStudent.dll
 C:\work\HelloStudent\HelloStudent\obj\Debug\HelloStudent.pdb
+C:\work\HelloStudent\HelloStudent\bin\Domain.dll
+C:\work\HelloStudent\HelloStudent\bin\Domain.pdb

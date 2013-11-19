@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Добавить работу";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+@model HelloStudent.Models.PaperModel
+
+<div class="order-container">
+    @using (Html.BeginForm("AddPaperFinish", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            @Html.Label("Тип работ. Выберите из списка или введите новый:")
+            <div>
+                <span>
+                    @Html.DropDownListFor(m => m.TypeId, Model.TypesList)
+                </span>
+                <span>
+                    @Html.TextBoxFor(m => m.Type)
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            @Html.Label("Предмет. Выберите из списка или введите новый:")
+            <div>
+                <span>
+                    @Html.DropDownListFor(m => m.SubjectId, Model.SubjectsList)
+                </span>
+                <span>
+                    @Html.TextBoxFor(m => m.Subject)
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <span>@Html.LabelFor(m => m.PaperName)</span>
+            <span>@Html.TextBoxFor(m => m.PaperName)</span>
+        </div>
+        <div class="row">
+            <span>@Html.LabelFor(m => m.Description)</span>
+            <span>@Html.TextAreaFor(m => m.Description)</span>
+        </div>
+        <div class="row">
+            <input type="file" id="File" name="File" />
+        </div>
+        <input type="submit" value="Загрузить" />
+    }
+</div>
+
+<script type="text/javascript">
+    $('#Type').keyup(function() {
+        if ($(this).val() != '') {
+            $('#TypeId').attr('disabled', 'disabled');
+        } else {
+            $('#TypeId').removeAttr('disabled');
+        }
+    });
+    
+    $('#Subject').keyup(function () {
+        if ($(this).val() != '') {
+            $('#SubjectId').attr('disabled', 'disabled');
+        } else {
+            $('#SubjectId').removeAttr('disabled');
+        }
+    });
+</script>

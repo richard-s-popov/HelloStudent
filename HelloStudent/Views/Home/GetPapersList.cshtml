@@ -1,0 +1,14 @@
+﻿@model HelloStudent.Models.PapersListModel
+
+@using HelloStudent.Models
+
+<table id="main_table" style="margin-left: 30px;">
+    <tbody>
+        @foreach (PaperModel t in Model.PapersList)
+        {
+            <tr>
+                <td><a href="javascript:void(0);">@t.PaperName</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

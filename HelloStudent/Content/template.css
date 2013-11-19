@@ -1590,6 +1590,19 @@ label.remember {
     margin: 230px auto 100px;
 }
 
+.row {
+    margin: 30px 10px;
+}
+
+.row span {
+    display: inline-block;
+    width: 400px;
+}
+
+.row span select, .row span input, .row span textarea {
+    width: 390px;
+}
+
 .sidebar {
     float: right;
     width: 300px;

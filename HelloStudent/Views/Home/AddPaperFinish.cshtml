@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Загрузка завершена";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+<div class="order-container">
+    <h1>Загрузка завершена.</h1>
+    <div class="row">
+        <a href="@Url.Action("AddPaperForm")">Загрузить еще...</a>
+    </div>
+    <div class="row">
+        <a>Перейти к просмотру работы</a>
+    </div>
+    <div class="row">
+        <a href="@Url.Action("Papers")">Перейти к списку работ</a>
+    </div>
+</div>
