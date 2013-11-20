@@ -27,17 +27,13 @@
       <![endif]-->
    </head>
     <body id="body">
-        <div class="tail-content">
+        <div class="header-shadow"></div>
+        <div class="tail-content-min">
             <div class="header clear">
                 <div class="main wrapper-header-min">
                     <div class="row-top-menu clear">
                         <div class="module">
-                            <ul class="menu-nav">
-                                <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
-                                <li class="item55"><a href="@Url.Action("Papers", "Home")"><span>Готовые работы</span></a></li>
-                                <li class="item56"><a href="#"><span>Заказать работу</span></a></li>
-                                <li class="item57"><a href="@Url.Action("TusurOrder", "Home")"><span>Студентам ТУСУР</span></a></li>
-                            </ul>
+                            @Html.Partial("Menu")
                         </div>
                         <div class="phone-number-container">
                             <div class="phone-number">8 (555) 555 1324</div>
@@ -190,16 +186,11 @@
                 <div class="main">
                     <div class="footer clear">
                         <div class="fright">
-                            <span>HighSchool 2009 &copy; <a href="http://www.joomla.org">Privacy policy.</a></span> All rights reserved. &nbsp;&nbsp;&nbsp; 
+                            <span>HelloStudent @DateTime.Now.Year &copy; </span> Все права защищены. &nbsp;&nbsp;&nbsp;
                         </div>
                         <div class="fleft">
                             <div class="module">
-                                <ul class="menu-nav">
-                                    <li class="item53"><a href="@Url.Action("Index", "Home")"><span>Главная</span></a></li>
-                                    <li class="item55"><a href="@Url.Action("Papers", "Home")"><span>Готовые работы</span></a></li>
-                                    <li class="item56"><a href="#"><span>Заказать работу</span></a></li>
-                                    <li class="item57"><a href="@Url.Action("TusurOrder", "Home")"><span>Студентам ТУСУР</span></a></li>
-                                </ul>
+                                @Html.Partial("Menu")
                             </div>
                         </div>
                     </div>

@@ -295,6 +295,7 @@
     <Content Include="Views\Home\GetPapersList.cshtml" />
     <Content Include="Views\Home\AddPaperForm.cshtml" />
     <Content Include="Views\Home\AddPaperFinish.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

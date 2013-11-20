@@ -1,8 +1,28 @@
 ﻿@{
-    ViewBag.Title = "Order";
+    ViewBag.Title = "Заказ работ";
     Layout = "~/Views/Shared/_LayoutMin.cshtml";
 }
 
 <div class="order-container">
-    
+    <div class="title-page">
+        <h1>Заказ работ</h1>
+    </div>
+    <div class="contacts">
+        <div class="description-page">
+            <p>Описание. Текст увеличивающий видение. Говорим, какие мы хоршие и вы на правильном пути. Возможно, навешиваем пользователю еще что-то, чтобы смотрелось солиднее и внушало доаверние. А возможно, тут будут какие-то пункты основные с описанием что да как.</p>
+        </div>
+        <h2>Контактная информация:</h2>
+        <br/>
+        <div class="contacts-data">
+            <p>Советская, 83 (антикафе "Вместе")</p>
+            <p><b>Телефоны:</b></p>
+            <p>+7-953-916-0500</p>
+            <p>(3822) 50-74-89</p>
+            <p>(+7-913-820-7489)</p>
+            <p><b>E-mail:</b> scienceplus@yandex.ru</p>
+            <p><b>ISQ:</b> 363-416-407</p>
+        </div>
+        <img src="@Url.Content("~/Content/img/depositphotos_1445627-Learning.png")" />
+    </div>
+    <hr/>
 </div>

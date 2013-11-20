@@ -246,5 +246,10 @@ namespace HelloStudent.Controllers.Home
 
             return View();
         }
+
+        public ActionResult Order()
+        {
+            return View();
+        }
     }
 }
