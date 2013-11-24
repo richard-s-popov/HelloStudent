@@ -1058,6 +1058,14 @@ fieldset.word, fieldset.only {
     
 }
 
+.repetitor {
+    
+}
+
+.repetitor h2 {
+    color: #2c9abe;
+}
+
 .popup {
     padding: 10px;
     position: relative;
@@ -1757,7 +1765,7 @@ hr {
 }
 
 #content {
-	padding:37px 1px 0 0;
+	padding:37px 1px 40px 0;
 }
 
 #container {
