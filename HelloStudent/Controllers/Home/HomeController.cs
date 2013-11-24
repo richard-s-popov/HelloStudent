@@ -22,7 +22,7 @@ namespace HelloStudent.Controllers.Home
             return View();
         }
 
-        public ActionResult CallOrder(string name, string phone)
+        public ActionResult CallOrder(string name, string phone, bool isTusur = false)
         {
             var em = new EmailMessage
             {
@@ -33,7 +33,7 @@ namespace HelloStudent.Controllers.Home
                 DisplayNameFrom = "HelloStudent.ru",
                 From = "student.hello@yandex.ru",
                 Subject = "Просьба позвонить",
-                To = "kurator@list.ru"
+                To = isTusur ? "kurator@list.ru" : "scienceplus@yandex.ru"
             };
 
             EmailService.SendMessage(em,
