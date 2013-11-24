@@ -52,6 +52,11 @@ namespace HelloStudent.Controllers.Home
                         {
                             new SelectListItem
                                 {
+                                    Text = "Экзамен",
+                                    Value = "Экзамен"
+                                },
+                            new SelectListItem
+                                {
                                     Text = "Диплом",
                                     Value = "Диплом"
                                 },
@@ -85,23 +90,23 @@ namespace HelloStudent.Controllers.Home
                         {
                             new SelectListItem
                                 {
-                                    Text = "1 день",
-                                    Value = "1 день"
+                                    Text = "Менее 3 дней",
+                                    Value = "Менее 3 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "3 дня",
-                                    Value = "3 дня"
+                                    Text = "Менее 7 дней",
+                                    Value = "Менее 7 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "5 дней",
-                                    Value = "5 дней"
+                                    Text = "Менее 14 дней",
+                                    Value = "Менее 14 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "более 5 дней",
-                                    Value = "более 5 дней"
+                                    Text = "более 28 дней",
+                                    Value = "более 28 дней"
                                 }
                         }
                 };

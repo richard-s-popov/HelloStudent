@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "Студентам ТУСУРа";
-    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+    ViewBag.Title = "Студентам ТУСУР";
+    Layout = "~/Views/Shared/_LayoutMinTusur.cshtml";
 }
 
 @model HelloStudent.Models.TusurOrderModel
@@ -10,15 +10,16 @@
         <h1>Заказ работ для студентов ТУСУР</h1>
     </div>
     <div class="description-page">
-        <p>Заказ студентам ТУСУР. Здесь вы можете оставить заявку. Выберите шифр специальности. Бла бла бла. Заказ студентам ТУСУР. Здесь вы можете оставить заявку. Выберите шифр специальности. Бла бла бла. Заказ студентам ТУСУР. Здесь вы можете оставить заявку. Выберите шифр специальности. Бла бла бла. Заказ студентам ТУСУР. Здесь вы можете оставить заявку. Выберите шифр специальности. Бла бла бла. Заказ студентам ТУСУР. Здесь вы можете оставить заявку. Выберите шифр специальности. Бла бла бла.</p>
+        <p style="width: 540px; margin-top: 40px; margin-bottom: 40px;">Студентам <b>ТУСУР</b> рекомендуется оставлять заказ на этой странице. Заказ будет направлен нашей фирме-партнеру, специализирующейся именно на студентах <b>ТУСУР</b>. Специалисты этой компании имеют большой опыт в выполнении работ данного вуза.<br /><br />Для того, чтобы оформить заказ заполните форму, указанную ниже.<br />В графе <b>«шифр»</b> указывается шифр специальности (можно выбрать его из списка ниже). <br />В графе <b>«дополнительно»</b> укажите всю остальную информацию, необходимую для выполнения работы (номер варианта, дополнительные требования, а так же другую необходимую информацию).</p>
+        <img style="position: absolute; right: 10px; top: -20px; width: 300px;" src="~/Content/img/depositphotos_3435657-Time-to-learning.png"/>
     </div>
     <hr/>
     <div id="specialities">
         <table id="main_table">
             <thead>
                 <tr>
-                    <th class="code">Шифр</th>
-                    <th>Название специальности</th>
+                    <th class="code"></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -169,14 +170,14 @@
         </table>
     </div>
     <div class="sidebar">
-        <div class="popup" style="width: 400px;">
+        <div class="popup" style="width: 330px;">
             <h2>Заказ работы</h2>
             <p>Пожалуйста, заполните поля и отправьте заказ.<br />Мы сразу же с Вами свяжемся.</p>
             @using (Html.BeginForm("TusurOrderFinish", "Home", FormMethod.Post, new { @id = "tusurOrderForm" }))
             {
                 <table>
                     <tr>
-                        <td class="labels">ФИО</td>
+                        <td class="labels">ФИО (не обяз.)</td>
                         <td>@Html.TextBoxFor(m => m.Fio)</td>
                     </tr>
                     <tr>
@@ -184,7 +185,7 @@
                         <td>@Html.TextBoxFor(m => m.Email)</td>
                     </tr>
                     <tr>
-                        <td class="labels">Телефон</td>
+                        <td class="labels">Телефон (не обяз.)</td>
                         <td>@Html.TextBoxFor(m => m.Phone)</td>
                     </tr>
                     <tr>
@@ -216,13 +217,13 @@
                 </table>
             }
         </div>
-        <div style="margin-left: 135px; margin-top: 30px;">
-            <script type="text/javascript" src="//vk.com/js/api/openapi.js?105"></script>
-            <!-- VK Widget -->
-            <div id="vk_groups"></div>
-            <script type="text/javascript">
-                VK.Widgets.Group("vk_groups", { mode: 2, width: '190', height: "400" }, 24614309);
-            </script>
+        <div style="padding-left: 20px; margin-top: 30px;">
+            <h2>Контактная информация:</h2>
+            <br/>
+            <p><b>Телефон:</b> +7 913-853-5943</p>
+            <p><b>E-mail:</b> kurator@list.ru</p>
+            <p><b>ICQ:</b> 574-341-059</p>
+            <p><b>Skype:</b> kurator.tomsk</p>
         </div>
     </div>
 </div>

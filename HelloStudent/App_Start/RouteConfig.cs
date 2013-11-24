@@ -14,6 +14,12 @@ namespace HelloStudent
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Tusur",
+                "tusur",
+                new { controller = "Home", action = "TusurOrder" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

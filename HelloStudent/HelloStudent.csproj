@@ -181,6 +181,8 @@
     <Content Include="Content\img\corner_bottom_right.gif" />
     <Content Include="Content\img\corner_top_left.gif" />
     <Content Include="Content\img\corner_top_right.gif" />
+    <Content Include="Content\img\depositphotos_1445627-Learning.png" />
+    <Content Include="Content\img\depositphotos_3435657-Time-to-learning.png" />
     <Content Include="Content\img\extra_box_separator.gif" />
     <Content Include="Content\img\extra_bull.gif" />
     <Content Include="Content\img\line_1.gif" />
@@ -192,6 +194,7 @@
     <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\img\separator_menu.gif" />
     <Content Include="Content\img\tail_content.jpg" />
+    <Content Include="Content\img\tail_content_min.jpg" />
     <Content Include="Content\img\top_menu_wrapper_button.gif" />
     <Content Include="Content\img\wrapper_header_min.png" />
     <Content Include="Content\img\wrapper_header.jpg" />
@@ -296,6 +299,7 @@
     <Content Include="Views\Home\AddPaperForm.cshtml" />
     <Content Include="Views\Home\AddPaperFinish.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\_LayoutMinTusur.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

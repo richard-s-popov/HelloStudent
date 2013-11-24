@@ -1061,6 +1061,11 @@ fieldset.word, fieldset.only {
 .popup {
     padding: 10px;
     position: relative;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 4px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .popup table {
@@ -1604,14 +1609,14 @@ label.remember {
 }
 
 .sidebar {
-    float: right;
-    width: 300px;
+    float: left;
+    width: 345px;
     position: relative;
     margin-top: 33px;
 }
 
 #specialities {
-    float: left;
+    float: right;
     margin-bottom: 100px;
     margin-top: 10px;
 }
@@ -1650,6 +1655,7 @@ table#main_table tr.subheader td{
 .title-page {
     margin-bottom: 20px;
     font-size: 22px;
+    font-family: 'Calibri';
 }
 
 .contacts {
@@ -1662,6 +1668,10 @@ table#main_table tr.subheader td{
     padding: 0 0 5px 0;
 }
 
+.globus {
+    margin-top: 60px;
+}
+
 .contacts img {
     position: absolute;
     right: -430px;
@@ -1670,6 +1680,7 @@ table#main_table tr.subheader td{
 
 .description-page {
     margin-bottom: 30px;
+    position: relative;
 }
 
 hr {
@@ -1711,7 +1722,7 @@ hr {
     color: rgb(247, 247, 247);
     text-shadow: 1px 1px 0px rgba(142, 137, 255, 1);
     /*font-family: 'Helvetica Inserat Cyrillic';*/
-    font-family: 'Arial';
+    font-family: 'Calibri';
     font-weight: bold;
 }
 
@@ -1759,7 +1770,7 @@ hr {
 #right {
 	float:right;
 	text-align:left;
-	width:342px;
+	width:255px;
 	_margin:0 0 0 -3px;
 }
 
