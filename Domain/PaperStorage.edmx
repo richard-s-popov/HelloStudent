@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище HelloStudentModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище HelloStudentModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="Хранилище HelloStudentModelContainer">
           <EntitySet Name="Papers" EntityType="Хранилище HelloStudentModel.Papers" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PaperTypes" EntityType="Хранилище HelloStudentModel.PaperTypes" store:Type="Tables" Schema="dbo" />
@@ -28,6 +28,7 @@
           <Property Name="Subject" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="FileExtension" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="PaperTypes">
           <Key>
@@ -67,8 +68,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HelloStudentModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -97,6 +97,7 @@
           <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="PaperType" Relationship="HelloStudentModel.FK_Papers_PaperTypes" FromRole="Papers" ToRole="PaperTypes" />
           <NavigationProperty Name="Subject1" Relationship="HelloStudentModel.FK_Papers_Subjects" FromRole="Papers" ToRole="Subjects" />
+          <Property Type="String" Name="FileExtension" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PaperType">
           <Key>
@@ -147,6 +148,7 @@
           <EntitySetMapping Name="Papers">
             <EntityTypeMapping TypeName="HelloStudentModel.Paper">
               <MappingFragment StoreEntitySet="Papers">
+                <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

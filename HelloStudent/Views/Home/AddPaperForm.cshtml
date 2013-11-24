@@ -5,8 +5,10 @@
 
 @model HelloStudent.Models.PaperModel
 
+<script  type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")"></script>
+
 <div class="order-container">
-    @using (Html.BeginForm("AddPaperFinish", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("AddPaperFinish", "Home", FormMethod.Post, new { id = "form", enctype = "multipart/form-data" }))
     {
         <div class="row">
             @Html.Label("Тип работ. Выберите из списка или введите новый:")
@@ -34,9 +36,12 @@
             <span>@Html.LabelFor(m => m.PaperName)</span>
             <span>@Html.TextBoxFor(m => m.PaperName)</span>
         </div>
-        <div class="row">
+        <div class="row" style="margin-bottom: 5px;">
             <span>@Html.LabelFor(m => m.Description)</span>
-            <span>@Html.TextAreaFor(m => m.Description)</span>
+            <span>@Html.HiddenFor(m => m.Description)</span>
+        </div>
+        <div style="margin-left: 10px; margin-right: 90px;">
+            <textarea class="ckeditor" name="ckeditor"></textarea>
         </div>
         <div class="row">
             <input type="file" id="File" name="File" />
@@ -60,5 +65,53 @@
         } else {
             $('#SubjectId').removeAttr('disabled');
         }
+    });
+    
+    jQuery(document).ready(function () {
+        CKEDITOR.replace('ckeditor', {
+            height: '300px'
+        });
+        
+        CKEDITOR.editorConfig = function( config ) {
+            // Define changes to default configuration here.
+            // For the complete reference:
+            // http://docs.ckeditor.com/#!/api/CKEDITOR.config
+
+            // The toolbar groups arrangement, optimized for two toolbar rows.
+            config.toolbarGroups = [
+                { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+                { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+                { name: 'links' },
+                { name: 'insert' },
+                { name: 'forms' },
+                { name: 'tools' },
+                { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'others' },
+                '/',
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+                { name: 'styles' },
+                { name: 'colors' },
+                { name: 'about' }
+            ];
+
+            // Remove some buttons, provided by the standard plugins, which we don't
+            // need to have in the Standard(s) toolbar.
+            config.removeButtons = 'Underline,Subscript,Superscript';
+
+            // Se the most common block elements.
+            config.format_tags = 'p;h1;h2;h3;pre';
+
+            // Make dialogs simpler.
+            config.removeDialogTabs = 'image:advanced;link:advanced';
+        };
+        
+        $('#form').submit(function() {
+            if (CKEDITOR.instances.ckeditor.getData() != "") {
+                $('#Description').val(CKEDITOR.instances.ckeditor.getData());
+            }
+
+            return true; // return false to cancel form action
+        });
     });
 </script>

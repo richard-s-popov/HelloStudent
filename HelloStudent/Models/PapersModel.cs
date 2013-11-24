@@ -24,7 +24,7 @@ namespace HelloStudent.Models
 
     public class PaperModel
     {
-        [DisplayName("Название работы")]
+        [DisplayName("Название работы:")]
         public string PaperName { get; set; }
 
         public int PaperId { get; set; }
@@ -37,10 +37,14 @@ namespace HelloStudent.Models
 
         public string Subject { get; set; }
 
-        [DisplayName("Описание работы")]
+        [DisplayName("Описание работы:")]
         public string Description { get; set; }
 
         public HttpPostedFileBase File { get; set; }
+
+        public string FileName { get; set; }
+
+        public string FileLink { get; set; }
 
         public List<SelectListItem> TypesList { get; set; }
 

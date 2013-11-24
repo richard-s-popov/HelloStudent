@@ -1,0 +1,9 @@
+﻿@model HelloStudent.Models.PaperModel
+
+<div class="paper-view-popup">
+    <h2>@Model.PaperName</h2>
+    <br/>
+    <p><b>@Model.Type</b></p>
+    <p>@Html.Raw(Model.Description)</p>
+    <a href="@Model.FileLink">@Model.FileName</a>
+</div>

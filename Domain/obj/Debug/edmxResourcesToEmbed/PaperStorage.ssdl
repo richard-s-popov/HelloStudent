@@ -23,6 +23,7 @@
     <Property Name="Subject" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="FileExtension" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="PaperTypes">
     <Key>

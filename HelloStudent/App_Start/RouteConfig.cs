@@ -20,6 +20,18 @@ namespace HelloStudent
             );
 
             routes.MapRoute(
+                "Works",
+                "works",
+                new { controller = "Home", action = "Papers" }
+            );
+
+            routes.MapRoute(
+                "Order",
+                "order",
+                new { controller = "Home", action = "Order" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

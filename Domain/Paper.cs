@@ -20,6 +20,7 @@ namespace Domain
         public int Subject { get; set; }
         public string Description { get; set; }
         public string FileName { get; set; }
+        public string FileExtension { get; set; }
     
         public virtual PaperType PaperType { get; set; }
         public virtual Subject Subject1 { get; set; }

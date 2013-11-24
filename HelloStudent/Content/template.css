@@ -1069,11 +1069,22 @@ fieldset.word, fieldset.only {
 .popup {
     padding: 10px;
     position: relative;
+}
+
+.sidebar .popup {
     border: 1px solid rgb(206, 206, 206);
     border-radius: 4px;
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.paper-view-popup {
+    margin-top: 10px;
+}
+
+.paper-view-popup p {
+    text-align: left;
 }
 
 .popup table {

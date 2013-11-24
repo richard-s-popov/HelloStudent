@@ -7,8 +7,30 @@
         @foreach (PaperModel t in Model.PapersList)
         {
             <tr>
-                <td><a href="javascript:void(0);">@t.PaperName</a></td>
+                <td><a class="paper-link" href="#viewPaper" id="@t.PaperId">@t.PaperName</a></td>
             </tr>
         }
     </tbody>
 </table>
+
+<script type="text/javascript">
+    $('.paper-link').click(function() {
+        $.fancybox.showActivity();
+        
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetPaper")',
+            data: {
+                id: $(this).attr('id')
+            },
+            success: function (data) {
+                $('#viewPaper').html(data);
+                $.fancybox.hideActivity();
+            }
+        });
+    });
+    
+    $('.paper-link').fancybox({
+        centerOnScroll: true
+    });
+</script>

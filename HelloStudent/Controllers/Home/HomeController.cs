@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -187,6 +189,31 @@ namespace HelloStudent.Controllers.Home
             return PartialView(model);
         }
 
+        public ActionResult GetPaper(int id)
+        {
+            var paper = new DBService().GetPaper(id);
+            var model = new PaperModel
+                {
+                    PaperName = paper.Name,
+                    Type = paper.PaperType.Name,
+                    Description = paper.Description,
+                    FileName = paper.Name + paper.FileExtension, // todo: костыль. исправить.
+                    FileLink = Url.Action("GetFile", new { id = paper.Id })
+                };
+
+            return PartialView("PaperView", model);
+        }
+
+        public ActionResult GetFile(int id)
+        {
+            var paper = new DBService().GetPaper(id);
+            var file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Files", paper.FileName);
+
+            var bytes = System.IO.File.ReadAllBytes(file);
+
+            return File(bytes, "application/zip", string.Format("{0}.{1}", paper.Name, paper.FileExtension));
+        }
+
         public ActionResult AddPaperForm()
         {
             var types = new DBService().GetTypes();
@@ -209,6 +236,7 @@ namespace HelloStudent.Controllers.Home
             return View(model);
         }
 
+        [ValidateInput(false)]
         public ActionResult AddPaperFinish(PaperModel model)
         {
             var paper = new Paper
@@ -217,7 +245,8 @@ namespace HelloStudent.Controllers.Home
                     Description = model.Description,
                     Type = model.TypeId,
                     Subject = model.SubjectId,
-                    FileName = model.File.FileName
+                    FileName = string.Format("{0}{1}", model.PaperName.Replace(' ', '_'), Path.GetExtension(model.File.FileName)),
+                    FileExtension = Path.GetExtension(model.File.FileName)
                 };
 
             if (paper.Type == 0)
@@ -246,7 +275,7 @@ namespace HelloStudent.Controllers.Home
 
             new DBService().AddPaper(paper);
 
-            string nameAndLocation = "~/Files/" + model.File.FileName;
+            string nameAndLocation = "~/Files/" + paper.FileName;
             model.File.SaveAs(Server.MapPath(nameAndLocation));
 
             return View();

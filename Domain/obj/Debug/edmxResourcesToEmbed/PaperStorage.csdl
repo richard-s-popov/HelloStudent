@@ -25,6 +25,7 @@
     <Property Name="FileName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="PaperType" Relationship="HelloStudentModel.FK_Papers_PaperTypes" FromRole="Papers" ToRole="PaperTypes" />
     <NavigationProperty Name="Subject1" Relationship="HelloStudentModel.FK_Papers_Subjects" FromRole="Papers" ToRole="Subjects" />
+    <Property Type="String" Name="FileExtension" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="PaperType">
     <Key>

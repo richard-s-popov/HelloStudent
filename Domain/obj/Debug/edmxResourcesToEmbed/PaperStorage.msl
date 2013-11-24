@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Papers">
       <EntityTypeMapping TypeName="HelloStudentModel.Paper">
         <MappingFragment StoreEntitySet="Papers">
+          <ScalarProperty Name="FileExtension" ColumnName="FileExtension" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Type" ColumnName="Type" />

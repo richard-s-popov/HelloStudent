@@ -36,6 +36,13 @@ namespace HelloStudent.Core
             return db.Papers.Where(x => x.Type == typeId && x.Subject == subjectId);
         }
 
+        public Paper GetPaper(int id)
+        {
+            var db = new HelloStudentEntities();
+
+            return db.Papers.FirstOrDefault(x => x.Id == id);
+        }
+
         public void AddPaper(Paper paper)
         {
             var db = new HelloStudentEntities();
