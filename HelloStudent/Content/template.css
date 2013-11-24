@@ -1058,8 +1058,8 @@ fieldset.word, fieldset.only {
     
 }
 
-.repetitor {
-    
+.repetitor p {
+    font-size: 14px;
 }
 
 .repetitor h2 {
