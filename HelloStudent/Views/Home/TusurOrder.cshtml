@@ -172,28 +172,95 @@
     <div class="sidebar">
         <div class="popup" style="width: 330px;">
             <h2>Заказ работы</h2>
-            <p>Пожалуйста, заполните поля и отправьте заказ.<br />Мы сразу же с Вами свяжемся.</p>
-            @using (Html.BeginForm("TusurOrderFinish", "Home", FormMethod.Post, new { @id = "tusurOrderForm" }))
+            <br/>
+            <p>Пожалуйста, заполните поля и отправьте заказ.<br />Мы свяжемся с Вами в течение 24 часов.</p>
+            <div class="first-visit-container">
+                <p>При первом заказе Вы получаете <b>скидку 30%</b></p>
+                <p>Вы первый раз у нас заказываете?</p>
+                <input type="radio" id="yes" name="firstvisit" value="1" checked="checked" /><label for="yes">Да</label>
+                <input type="radio" id="no" name="firstvisit" value="2" /><label for="no">Нет</label>
+            </div>
+            @using (Html.BeginForm("TusurOrderFinish", "Home", FormMethod.Post, new { @id = "tusurOrderFormFirst" }))
             {
                 <table>
                     <tr>
-                        <td class="labels">ФИО (не обяз.)</td>
+                        <td class="labels">ФИО <p class="asterisk">*</p></td>
                         <td>@Html.TextBoxFor(m => m.Fio)</td>
                     </tr>
                     <tr>
-                        <td class="labels">Email</td>
+                        <td class="labels">Email <p class="asterisk">*</p></td>
                         <td>@Html.TextBoxFor(m => m.Email)</td>
                     </tr>
                     <tr>
-                        <td class="labels">Телефон (не обяз.)</td>
+                        <td class="labels">Телефон</td>
                         <td>@Html.TextBoxFor(m => m.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Логин <p class="asterisk">*</p></td>
+                        <td>@Html.TextBoxFor(m => m.Login)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="help-description-container"><p class="help-description">Логин от ФДО ТУСУР</p></td>
                     </tr>
                     <tr>
                         <td class="labels">Шифр</td>
                         <td>@Html.TextBoxFor(m => m.Cipher)</td>
                     </tr>
                     <tr>
-                        <td class="labels">Предмет</td>
+                        <td></td>
+                        <td class="help-description-container"><p class="help-description">Последние 2 цифры пароля от ФДО ТУСУР</p></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Дисциплина</td>
+                        <td>@Html.TextBoxFor(m => m.Subject)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Вид работы</td>
+                        <td>@Html.DropDownListFor(m => m.Type, Model.WorkTypesListCutVersion)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Срочность</td>
+                        <td>@Html.DropDownListFor(m => m.Urgency, Model.UrgencyList)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Дополнительно</td>
+                        <td>@Html.TextAreaFor(m => m.Description)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels"></td>
+                        <td>
+                            <a id="sendOrder" class="order-button" href="javascript:void(0);" onclick="$('#tusurOrderFormFirst').submit();">Отправить заявку</a>
+                        </td>
+                    </tr>
+                </table>
+                @Html.Hidden("FirstVisit", true)
+            }
+            @using (Html.BeginForm("TusurOrderFinish", "Home", FormMethod.Post, new { @id = "tusurOrderForm", @style = "display: none;" }))
+            {
+                <table>
+                    <tr>
+                        <td class="labels">ФИО</td>
+                        <td>@Html.TextBoxFor(m => m.Fio)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Email <p class="asterisk">*</p></td>
+                        <td>@Html.TextBoxFor(m => m.Email)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Телефон</td>
+                        <td>@Html.TextBoxFor(m => m.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Шифр </td>
+                        <td>@Html.TextBoxFor(m => m.Cipher)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="help-description-container"><p class="help-description">Последние 2 цифры пароля от ФДО ТУСУР</p></td>
+                    </tr>
+                    <tr>
+                        <td class="labels">Дисциплина</td>
                         <td>@Html.TextBoxFor(m => m.Subject)</td>
                     </tr>
                     <tr>
@@ -215,6 +282,7 @@
                         </td>
                     </tr>
                 </table>
+                @Html.Hidden("FirstVisit", false)
             }
         </div>
         <div style="padding-left: 20px; margin-top: 30px;">
@@ -233,4 +301,158 @@
         var cipher = $(this).parent().prev().html();
         $('#Cipher').val(cipher);
     });
+
+    $('input[name="firstvisit"]').change(function() {
+        if ($('input[name="firstvisit"]:checked').val() == 1) {
+            $('#tusurOrderFormFirst').show();
+            $('#tusurOrderForm').hide();
+        } else {
+            $('#tusurOrderFormFirst').hide();
+            $('#tusurOrderForm').show();
+        }
+    });
+    
+    $('#tusurOrderFormFirst').submit(function () {
+        jValOrder.errors = false;
+        jValOrder.name();
+        jValOrder.email();
+        jValOrder.login();
+        
+        if (!jValOrder.errors) {
+            return true;
+        }
+        
+        return false;
+    });
+    
+    $('#tusurOrderForm').submit(function () {
+        jValOrder.errors = false;
+        jValOrder.email();
+        
+        if (!jValOrder.errors) {
+            return true;
+        }
+        
+        return false;
+    });
+
+    var jValOrder = {
+        'name': function() {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Fio"]') : $('#tusurOrderForm input[name="Fio]"');
+            var pos = ele.position();
+            ele.parent().append('<div id="nameInfo" class="info"></div>');
+            var nameInfo = $('#nameInfo');
+
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+            if ($.trim(ele.val()).length < 3) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Введите ФИО').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'login': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Login"]') : $('#tusurOrderForm input[name="Login"]');
+            var pos = ele.position();
+            ele.parent().append('<div id="loginInfo" class="info"></div>');
+            var nameInfo = $('#loginInfo');
+            debugger;
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+            if ($.trim(ele.val()).length < 3) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Введите Логин от системы ФДО ТУСУР').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'email': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Email"]') : $('#tusurOrderForm input[name="Email"]');
+            var pos = ele.offset();
+            ele.parent().append('<div id="emailInfo" class="info"></div>');
+            var emailInfo = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst #emailInfo:first') : $('#tusurOrderForm #emailInfo:first');
+
+            emailInfo.css({
+                top: pos.top + 4,
+                left: pos.left + ele.width() + 25
+            });
+
+            var patt = /^.+@@.+[.].{2,}$/i;
+            
+            if ($.trim(ele.val()).length > 0) {
+                if (!patt.test(ele.val())) {
+                    jValOrder.errors = true;
+                    emailInfo.addClass('error').html('Введите корректный Email').show();
+                    ele.removeClass('normal').addClass('wrong');
+                    emailInfo.prev().addClass('error-input');
+                } else if (ele.val().length > 50) {
+                    jValOrder.errors = true;
+                    emailInfo.addClass('error').html('Превышен максимальный размер 50 символов').show();
+                    ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                    emailInfo.prev().addClass('error-input');
+                } else {
+                    emailInfo.removeClass('error');
+                    ele.removeClass('wrong').addClass('normal');
+                    emailInfo.prev().removeClass('error-input');
+                }
+            } else {
+                jValOrder.errors = true;
+                emailInfo.addClass('error').html('Введите Email').show();
+                emailInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+            }
+        },
+        'phone': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Phone"]') : $('#tusurOrderForm input[name="Phone"]');
+            var pos = ele.position();
+            ele.parent().append('<div id="phoneInfo" class="info"></div>');
+            var phoneInfo = $('#phoneInfo');
+
+            phoneInfo.css({
+                top: pos.top + 4,
+                left: pos.left + ele.width() + 25
+            });
+
+            var patt = /^([\+]{1})?[0-9\-]*$/i;
+
+            if (ele.val().length != 0 && (ele.val().length > 15 || ele.val().length < 5 || !patt.test(ele.val()))) {
+                jValOrder.errors = true;
+                phoneInfo.addClass('error').html('Введите корректный номер телефона').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                phoneInfo.prev().addClass('error-input');
+            } else if (ele.val().length == 0) {
+                jValOrder.errors = true;
+                phoneInfo.addClass('error').html('Введите номер телефона').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                phoneInfo.prev().addClass('error-input');
+            } else {
+                phoneInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                phoneInfo.prev().removeClass('error-input');
+            }
+        }
+    };
 </script>

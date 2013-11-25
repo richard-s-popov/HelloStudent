@@ -54,56 +54,84 @@ namespace HelloStudent.Controllers.Home
                         {
                             new SelectListItem
                                 {
+                                    Text = "Компьютерная Контрольная Работа",
+                                    Value = "Компьютерная Контрольная Работа"
+                                },
+                            new SelectListItem
+                                {
+                                    Text = "Текстовая Контрольная Работа",
+                                    Value = "Текстовая Контрольная Работа"
+                                },
+                            new SelectListItem
+                                {
+                                    Text = "Лабораторная Работа",
+                                    Value = "Лабораторная Работа"
+                                },
+                            new SelectListItem
+                                {
+                                    Text = "Курсовой Проект",
+                                    Value = "Курсовой Проект"
+                                },
+                            new SelectListItem
+                                {
                                     Text = "Экзамен",
                                     Value = "Экзамен"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Диплом",
-                                    Value = "Диплом"
+                                    Text = "Преддипломная практика",
+                                    Value = "Преддипломная практика"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Курсовой",
-                                    Value = "Курсовой"
+                                    Text = "Дипломный Проект",
+                                    Value = "Дипломный Проект"
+                                }
+                        },
+                    WorkTypesListCutVersion = new List<SelectListItem>
+                        {
+                            new SelectListItem
+                                {
+                                    Text = "Компьютерная Контрольная Работа",
+                                    Value = "Компьютерная Контрольная Работа"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Лабораторная",
-                                    Value = "Лабораторная"
+                                    Text = "Текстовая Контрольная Работа",
+                                    Value = "Текстовая Контрольная Работа"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Контрольная",
-                                    Value = "Контрольная"
+                                    Text = "Лабораторная Работа",
+                                    Value = "Лабораторная Работа"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Текстовая",
-                                    Value = "Текстовая"
+                                    Text = "Курсовой Проект",
+                                    Value = "Курсовой Проект"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Компьютерная контрольная",
-                                    Value = "Компьютерная контрольная"
+                                    Text = "Экзамен",
+                                    Value = "Экзамен"
                                 }
                         },
                     UrgencyList = new List<SelectListItem>
                         {
                             new SelectListItem
                                 {
-                                    Text = "Менее 3 дней",
-                                    Value = "Менее 3 дней"
+                                    Text = "3-7 дней",
+                                    Value = "3-7 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Менее 7 дней",
-                                    Value = "Менее 7 дней"
+                                    Text = "7-14 дней",
+                                    Value = "7-14 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Менее 14 дней",
-                                    Value = "Менее 14 дней"
+                                    Text = "более 14 дней",
+                                    Value = "более 14 дней"
                                 },
                             new SelectListItem
                                 {
@@ -124,14 +152,16 @@ namespace HelloStudent.Controllers.Home
                     Message = string.Format("<b>ФИО:</b> {0}<br/>" +
                                         "<b>Email:</b> {1}<br/>" +
                                         "<b>Тел.:</b> {2}<br/>" +
-                                        "<b>Шифр:</b> {3}<br/>" +
-                                        "<b>Предмет:</b> {4}<br/>" +
-                                        "<b>Вид работ:</b> {5}<br/>" +
-                                        "<b>Срочность:</b> {6}<br/>" +
-                                        "<b>Дополнительно:</b> {7}<br/>",
+                                        "<b>Логин:</b> {3}<br/>" +
+                                        "<b>Шифр:</b> {4}<br/>" +
+                                        "<b>Предмет:</b> {5}<br/>" +
+                                        "<b>Вид работ:</b> {6}<br/>" +
+                                        "<b>Срочность:</b> {7}<br/>" +
+                                        "<b>Дополнительно:</b> {8}<br/>",
                                         model.Fio,
                                         model.Email,
                                         model.Phone,
+                                        model.Login,
                                         model.Cipher,
                                         model.Subject,
                                         model.Type,
@@ -139,9 +169,36 @@ namespace HelloStudent.Controllers.Home
                                         model.Description),
                     DisplayNameFrom = "HelloStudent.ru",
                     From = "student.hello@yandex.ru",
-                    Subject = "Заказ работы",
+                    Subject = "Заказ работы (Первый заказ)",
                     To = "kurator@list.ru"
                 };
+
+            if (!model.FirstVisit)
+            {
+                em = new EmailMessage
+                    {
+                        Message = string.Format("<b>ФИО:</b> {0}<br/>" +
+                                            "<b>Email:</b> {1}<br/>" +
+                                            "<b>Тел.:</b> {2}<br/>" +
+                                            "<b>Шифр:</b> {3}<br/>" +
+                                            "<b>Предмет:</b> {4}<br/>" +
+                                            "<b>Вид работ:</b> {5}<br/>" +
+                                            "<b>Срочность:</b> {6}<br/>" +
+                                            "<b>Дополнительно:</b> {7}<br/>",
+                                            model.Fio,
+                                            model.Email,
+                                            model.Phone,
+                                            model.Cipher,
+                                            model.Subject,
+                                            model.Type,
+                                            model.Urgency,
+                                            model.Description),
+                        DisplayNameFrom = "HelloStudent.ru",
+                        From = "student.hello@yandex.ru",
+                        Subject = "Заказ работы",
+                        To = "kurator@list.ru"
+                    };
+            }
 
             EmailService.SendMessage(em,
                     "student.hello@yandex.ru",
@@ -150,7 +207,7 @@ namespace HelloStudent.Controllers.Home
                     587,
                     true);
 
-            return RedirectToAction("TusurOrderFinish");
+            return View("TusurOrderFinish");
         }
 
         public ActionResult Papers()

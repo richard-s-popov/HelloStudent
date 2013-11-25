@@ -1083,6 +1083,33 @@ fieldset.word, fieldset.only {
     margin-top: 10px;
 }
 
+.asterisk {
+    color: red;
+    display: inline-block;
+}
+
+.help-description-container {
+    padding-top: 0 !important;
+}
+
+.help-description {
+    font-size: 11px;
+}
+
+.first-visit-container {
+    margin-bottom: 20px;
+}
+
+.first-visit-container input {
+    margin-left: 70px;
+    cursor: pointer;
+}
+
+.first-visit-container label {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
 .paper-view-popup p {
     text-align: left;
 }
