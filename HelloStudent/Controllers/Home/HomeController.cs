@@ -79,8 +79,8 @@ namespace HelloStudent.Controllers.Home
                                 },
                             new SelectListItem
                                 {
-                                    Text = "Преддипломная практика",
-                                    Value = "Преддипломная практика"
+                                    Text = "Преддипломная Практика",
+                                    Value = "Преддипломная Практика"
                                 },
                             new SelectListItem
                                 {
@@ -120,23 +120,18 @@ namespace HelloStudent.Controllers.Home
                         {
                             new SelectListItem
                                 {
-                                    Text = "3-7 дней",
-                                    Value = "3-7 дней"
+                                    Text = "3 - 7 дней",
+                                    Value = "3 - 7 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "7-14 дней",
-                                    Value = "7-14 дней"
+                                    Text = "7 - 14 дней",
+                                    Value = "7 - 14 дней"
                                 },
                             new SelectListItem
                                 {
-                                    Text = "более 14 дней",
-                                    Value = "более 14 дней"
-                                },
-                            new SelectListItem
-                                {
-                                    Text = "более 28 дней",
-                                    Value = "более 28 дней"
+                                    Text = "14 - 28 дней",
+                                    Value = "14 - 28 дней"
                                 }
                         }
                 };

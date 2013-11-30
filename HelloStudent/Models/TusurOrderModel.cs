@@ -14,6 +14,8 @@ namespace HelloStudent.Models
 
         public string Phone { get; set; }
 
+        public string SpecialityCode { get; set; }
+
         public string Cipher { get; set; }
 
         public string Login { get; set; }

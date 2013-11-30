@@ -1086,6 +1086,13 @@ fieldset.word, fieldset.only {
 .asterisk {
     color: red;
     display: inline-block;
+    padding: 0;
+}
+
+.asterisk-description {
+    color: red;
+    display: inline-block;
+    padding: 10px 0 0 0;
 }
 
 .help-description-container {
