@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="HelloStudentModel.Subject" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <AssociationConnector Association="HelloStudentModel.FK_Papers_PaperTypes" ManuallyRouted="false" />
         <AssociationConnector Association="HelloStudentModel.FK_Papers_Subjects" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HelloStudentModel.SiteContent" Width="1.5" PointX="6" PointY="1.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

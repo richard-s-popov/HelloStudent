@@ -19,6 +19,10 @@ namespace HelloStudent.Controllers.Home
 
         public ActionResult Index()
         {
+            var content = new DBService().GetMainContent();
+
+            ViewBag.Content = content != null ? content.MainContent : string.Empty;
+
             return View();
         }
 
@@ -143,6 +147,33 @@ namespace HelloStudent.Controllers.Home
         public ActionResult OrderFinish(OrderModel model)
         {
             return View();
+        }
+
+        public ActionResult MainPageContent(string password)
+        {
+            if (password == "123456aaa111")
+            {
+                var content = new DBService().GetMainContent();
+
+                ViewBag.Content = content != null ? content.MainContent : string.Empty;
+                ViewBag.Password = "123456aaa111";
+
+                return View();    
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult MainPageContentFinish(string content, string password)
+        {
+            if (password == "123456aaa111")
+            {
+                new DBService().SaveMainContent(content);
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

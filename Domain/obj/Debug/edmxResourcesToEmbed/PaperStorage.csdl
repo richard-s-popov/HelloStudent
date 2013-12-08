@@ -12,6 +12,7 @@
       <End Role="Subjects" EntitySet="Subjects" />
       <End Role="Papers" EntitySet="Papers" />
     </AssociationSet>
+    <EntitySet Name="SiteContents" EntityType="HelloStudentModel.SiteContent" />
   </EntityContainer>
   <EntityType Name="Paper">
     <Key>
@@ -67,4 +68,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="SiteContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="MainContent" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

@@ -28,5 +28,6 @@ namespace Domain
         public DbSet<Paper> Papers { get; set; }
         public DbSet<PaperType> PaperTypes { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<SiteContent> SiteContents { get; set; }
     }
 }

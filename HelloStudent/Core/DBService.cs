@@ -15,6 +15,33 @@ namespace HelloStudent.Core
             return db.PaperTypes.Select(x => x);
         }
 
+        public SiteContent GetMainContent()
+        {
+            var db = new HelloStudentEntities();
+
+            return db.SiteContents.FirstOrDefault();
+        }
+
+        public void SaveMainContent(string content)
+        {
+            var db = new HelloStudentEntities();
+            var entity = db.SiteContents.FirstOrDefault();
+
+            if (entity != null)
+            {
+                entity.MainContent = content;
+                db.SaveChanges();
+            }
+            else
+            {
+                db.SiteContents.Add(new SiteContent
+                    {
+                        MainContent = content
+                    });
+                db.SaveChanges();
+            }
+        }
+
         public IEnumerable<Subject> GetSubjectsByType(int typeId)
         {
             var db = new HelloStudentEntities();

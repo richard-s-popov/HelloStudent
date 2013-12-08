@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "MainPageContent";
+    Layout = "~/Views/Shared/_LayoutMin.cshtml";
+}
+
+<script  type="text/javascript" src="@Url.Content("~/Scripts/ckeditor/ckeditor.js")"></script>
+
+<div class="order-container">
+    @using (Html.BeginForm("MainPageContentFinish", "Home", FormMethod.Post, new {id = "form", enctype = "multipart/form-data"}))
+    {
+        <textarea class="ckeditor" name="ckeditor">@ViewBag.Content</textarea>
+        <input type="hidden" id="content" name="content" />
+        <input type="hidden" id="password" name="password" value="@ViewBag.Password" />
+        <input type="submit" style="margin-top: 30px; height: 40px; width: 100px;" value="Сохранить" />
+    }
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        CKEDITOR.replace('ckeditor', {
+            height: '500px'
+        });
+        
+        CKEDITOR.editorConfig = function( config ) {
+            // Define changes to default configuration here.
+            // For the complete reference:
+            // http://docs.ckeditor.com/#!/api/CKEDITOR.config
+
+            // The toolbar groups arrangement, optimized for two toolbar rows.
+            config.toolbarGroups = [
+                { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+                { name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+                { name: 'links' },
+                { name: 'insert' },
+                { name: 'forms' },
+                { name: 'tools' },
+                { name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+                { name: 'others' },
+                '/',
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+                { name: 'styles' },
+                { name: 'colors' },
+                { name: 'about' }
+            ];
+
+            // Remove some buttons, provided by the standard plugins, which we don't
+            // need to have in the Standard(s) toolbar.
+            config.removeButtons = 'Underline,Subscript,Superscript';
+
+            // Se the most common block elements.
+            config.format_tags = 'p;h1;h2;h3;pre';
+
+            // Make dialogs simpler.
+            config.removeDialogTabs = 'image:advanced;link:advanced';
+        };
+        
+        $('#form').submit(function () {
+            if (CKEDITOR.instances.ckeditor.getData() != "") {
+                $('#content').val(CKEDITOR.instances.ckeditor.getData());
+            }
+
+            return true; // return false to cancel form action
+        });
+    });
+</script>

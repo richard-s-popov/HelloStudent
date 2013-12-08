@@ -1,6 +1,6 @@
 body, td, th, div, p, label {
 	color:#2F3E3A;
-	font:normal 13px/18px Arial, Helvetica, sans-serif;
+	font:normal 13px Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -1886,11 +1886,11 @@ hr {
     /*font-family: 'Helvetica Inserat Cyrillic';*/
     font-family: 'Calibri';
     font-weight: bold;
+    padding: 0;
 }
 
 .row-logo h1 a .slogan {
     text-transform: uppercase;
-    margin-top: 10px;
     font-weight: bold;
     font-family: Arial;
 }

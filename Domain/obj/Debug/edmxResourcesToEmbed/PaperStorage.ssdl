@@ -3,6 +3,7 @@
   <EntityContainer Name="Хранилище HelloStudentModelContainer">
     <EntitySet Name="Papers" EntityType="Хранилище HelloStudentModel.Papers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PaperTypes" EntityType="Хранилище HelloStudentModel.PaperTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SiteContent" EntityType="Хранилище HelloStudentModel.SiteContent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subjects" EntityType="Хранилище HelloStudentModel.Subjects" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Papers_PaperTypes" Association="Хранилище HelloStudentModel.FK_Papers_PaperTypes">
       <End Role="PaperTypes" EntitySet="PaperTypes" />
@@ -31,6 +32,13 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="SiteContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MainContent" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Subjects">
     <Key>
