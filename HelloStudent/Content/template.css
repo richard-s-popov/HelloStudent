@@ -1035,7 +1035,7 @@ fieldset.word, fieldset.only {
 .header .phone-number-container .phone-number {
     position: absolute;
     top: 10px;
-    right: 200px;
+    right: 150px;
     color: white;
     display: block;
     font-size: 20px;
@@ -1051,15 +1051,22 @@ fieldset.word, fieldset.only {
     position: absolute;
     top: 28px;
     color: #A9D338;
-    right: 225px;
+    right: 173px;
 }
 
 .header .phone-number-container .call-order-form {
     
 }
 
+.repetitor {
+    background-image: url(../Content/img/6a00d8341ec49253ef00e54f6eef498834-800wi-602x554.jpg);
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
 .repetitor p {
     font-size: 14px;
+    width: 450px;
 }
 
 .repetitor h2 {
@@ -1713,7 +1720,6 @@ table#main_table tr.subheader td{
 
 .contacts {
     position: relative;
-    width: 400px;
     height: 400px;
 }
 
@@ -1721,8 +1727,111 @@ table#main_table tr.subheader td{
     padding: 0 0 5px 0;
 }
 
+.contacts .order-form {
+    background: #06ABD1 url('../Content/img/arrow-form.png') no-repeat bottom center;
+    padding-top: 40px;
+}
+
+.contacts .order-form h3 {
+    margin-bottom: 1.5em;
+    color: #FFFFFF;
+    text-align: center;
+    font: normal 2em 'Arial';
+}
+
+.contacts .order-form .order-step {
+    
+}
+
+.contacts .order-form .order-step .next-button {
+    width: 272px;
+    padding: 15px 0;
+    margin: 0 0 0 315px;
+    border: 1px solid #3BD9F3;
+    border-bottom: 0;
+    clear: left;
+    text-align: center;
+    font: normal 2em 'Arial';
+    background: #FC9002;
+    background: -moz-linear-gradient(top, rgba(252, 144, 2, 1) 0%, rgba(247, 129, 3, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252, 144, 2, 1)), color-stop(100%,rgba(247, 129, 3, 1)));
+    background: -webkit-linear-gradient(top, rgba(252, 144, 2, 1) 0%,rgba(247, 129, 3, 1) 100%);
+    background: -o-linear-gradient(top, rgba(252, 144, 2, 1) 0%,rgba(247, 129, 3, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(252, 144, 2, 1) 0%,rgba(247, 129, 3, 1) 100%);
+    background: linear-gradient(to bottom, rgba(252, 144, 2, 1) 0%,rgba(247, 129, 3, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc9002', endColorstr='#f78103',GradientType=0 );
+    box-shadow: 0 2px 0 0 #056888;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-shadow: none;
+    border-color: #FEAE44;
+    box-shadow: 0 2px #DA7D02;
+    margin-top: 50px;
+}
+
+.contacts .order-form .order-step .next-button:hover {
+    width: 272px;
+    padding: 15px 0;
+    margin: 0 0 0 315px;
+    border: 1px solid #3BD9F3;
+    border-bottom: 0;
+    margin-top: 50px;
+    clear: left;
+    text-align: center;
+    font: normal 2em 'Arial';
+    background: #09C1DD;
+    background: -moz-linear-gradient(top, rgba(9,193,221,1) 0%, rgba(5,151,198,1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(9,193,221,1)), color-stop(100%,rgba(5,151,198,1)));
+    background: -webkit-linear-gradient(top, rgba(9,193,221,1) 0%,rgba(5,151,198,1) 100%);
+    background: -o-linear-gradient(top, rgba(9,193,221,1) 0%,rgba(5,151,198,1) 100%);
+    background: -ms-linear-gradient(top, rgba(9,193,221,1) 0%,rgba(5,151,198,1) 100%);
+    background: linear-gradient(to bottom, rgba(9,193,221,1) 0%,rgba(5,151,198,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#09c1dd', endColorstr='#0597c6',GradientType=0 );
+    box-shadow: 0 2px 0 0 #056888;
+    color: #FFFFFF;
+    text-shadow: 1px 1px #0C607C;
+    cursor: pointer;
+}
+
+.order-form .order-row {
+    width: 520px;
+    margin: 20px auto;
+}
+
+.order-form .order-row .order-label {
+    width: 100px;
+    vertical-align: top;
+    margin-right: 20px;
+    color: white;
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.order-form .order-row .order-label .asterisk {
+    color: white;
+}
+
+.order-form .order-row .order-field {
+    width: 350px;
+}
+
+.order-form .order-row .order-field textarea,
+.order-form .order-row .order-field input {
+    width: 350px;
+    padding-left: 10px;
+}
+
+.order-form .order-row .order-field textarea {
+    padding-top: 10px;
+    font-family: Arial;
+}
+
+.order-form .order-row .order-field input {
+    height: 38px;
+}
+
 .globus {
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .contacts img {
@@ -1871,12 +1980,20 @@ hr {
 	padding:26px 0 2px 17px;
 }
 
+.main-buttons {
+    position: absolute;
+    bottom: 0px;
+    right: -15px;
+    width: 900px;
+}
+
 .row-col {
 	padding:24px 0 0 0;
 }
 
 .row-col .col-1a {
 	width:282px;
+    margin-left:15px;
 	background:url(../Content/img/banner_wrapper_1.jpg) 0 0 no-repeat;
 	height:70px;
 }
@@ -1888,6 +2005,13 @@ hr {
 	height:70px;
 }
 
+.row-col .col-3a {
+	width:282px;
+	margin-left:15px;
+	background:url(../Content/img/banner_wrapper_3.jpg) 0 0 no-repeat;
+	height:70px;
+}
+
 .top-box .col-1 {
 	width:298px;
 	text-align:left;
@@ -1896,6 +2020,8 @@ hr {
 .top-box .col-2 {
 	width:585px;
 	text-align:left;
+    padding-top: 40px;
+    position: relative;
 }
 
 .top-box .col-2 h3 {
@@ -1914,17 +2040,25 @@ hr {
 .top-box .col-2 .main-tesises {
     margin-top: 10px;
     margin-left: 30px;
+    margin-bottom: 130px;
 }
 
 .top-box .col-2 .main-tesises li {
     list-style-image: url(../Content/img/bullet.png);
-    height: 28px;
+    min-height: 28px;
     font-size: 14px;
 }
 
 .top-box .col-2 .main-tesises li a {
     font-weight: bold;
     color: rgb(80, 80, 80);
+}
+
+.top-box .col-2 .main-tesises .main-tesises-description {
+    width: 315px;
+    font-style: italic;
+    margin-top: 8px;
+    display: none;
 }
 
 .inner-extra-indent {

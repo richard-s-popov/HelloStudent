@@ -140,6 +140,12 @@ namespace HelloStudent.Controllers.Home
         }
 
         [HttpPost]
+        public ActionResult OrderFinish(OrderModel model)
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult TusurOrderFinish(TusurOrderModel model)
         {
             var em = new EmailMessage
@@ -286,6 +292,11 @@ namespace HelloStudent.Controllers.Home
             };
 
             return View(model);
+        }
+
+        public ActionResult Repetitor()
+        {
+            return View();
         }
 
         [ValidateInput(false)]

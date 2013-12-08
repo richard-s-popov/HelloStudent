@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailMessage.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\PapersModel.cs" />
     <Compile Include="Models\TusurOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,8 +164,12 @@
     <Content Include="Content\fonts\890197754-HIYU____.svg" />
     <Content Include="Content\img\1page_img_1.png" />
     <Content Include="Content\img\1page_img_2.jpg" />
+    <Content Include="Content\img\6a00d8341ec49253ef00e54f6eef498834-800wi-602x554.jpg" />
+    <Content Include="Content\img\arrow-form-contact.png" />
+    <Content Include="Content\img\arrow-form.png" />
     <Content Include="Content\img\banner_wrapper_1.jpg" />
     <Content Include="Content\img\banner_wrapper_2.jpg" />
+    <Content Include="Content\img\banner_wrapper_3.jpg" />
     <Content Include="Content\img\border1_bottom.gif" />
     <Content Include="Content\img\border1_top.gif" />
     <Content Include="Content\img\border_bottom.gif" />
@@ -182,6 +187,7 @@
     <Content Include="Content\img\corner_top_left.gif" />
     <Content Include="Content\img\corner_top_right.gif" />
     <Content Include="Content\img\depositphotos_1445627-Learning.png" />
+    <Content Include="Content\img\depositphotos_3435657-Time-to-learning - копия.png" />
     <Content Include="Content\img\depositphotos_3435657-Time-to-learning.png" />
     <Content Include="Content\img\extra_box_separator.gif" />
     <Content Include="Content\img\extra_bull.gif" />
@@ -192,12 +198,16 @@
     <Content Include="Content\img\list_wrapper_2.gif" />
     <Content Include="Content\img\list_wrapper_3.gif" />
     <Content Include="Content\img\logo.jpg" />
+    <Content Include="Content\img\rep.jpg" />
+    <Content Include="Content\img\rep.png" />
     <Content Include="Content\img\separator_menu.gif" />
     <Content Include="Content\img\tail_content.jpg" />
     <Content Include="Content\img\tail_content_min.jpg" />
+    <Content Include="Content\img\teacher.jpg" />
     <Content Include="Content\img\top_menu_wrapper_button.gif" />
     <Content Include="Content\img\wrapper_header_min.png" />
     <Content Include="Content\img\wrapper_header.jpg" />
+    <Content Include="Content\img\_wrapper_header_min.png" />
     <Content Include="Content\template.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -540,6 +550,8 @@
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\_LayoutMinTusur.cshtml" />
     <Content Include="Views\Home\PaperView.cshtml" />
+    <Content Include="Views\Shared\MenuTusur.cshtml" />
+    <Content Include="Views\Home\repetitor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
