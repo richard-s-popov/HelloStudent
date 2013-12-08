@@ -6,15 +6,15 @@
 
 <div class="order-container">
     <div class="title-page">
-        <h1>Узнайте прямо сейчас сколько стоит написать Вашу работу</h1>
+        <h1>Заказ работ</h1>
     </div>
     <div class="contacts">
         <div class="description-page">
-            <p>Заполните, пожалуйста, форму предварительной заявки. Менеджер произведет оценку вашей работы. Это займет совсем немного времени.<br />Предлагаем помощь в написании дипломных проектов и контрольных работ, курсовых работ, рефератов, докладов, тезисов по различным отрослям наук.</p>
+            <p>Заполните, пожалуйста, форму предварительной заявки. Менеджер произведет оценку вашей работы. Это займет совсем немного времени.@*<br />Предлагаем помощь в написании дипломных проектов и контрольных работ, курсовых работ, рефератов, докладов, тезисов по различным отрослям наук.*@</p>
         </div>
         
         <div class="order-form">
-            <h3>Шаг 1. Выберите тип вашей работы</h3>
+            <h3>Узнайте прямо сейчас сколько стоит написать Вашу работу</h3>
             @using (Html.BeginForm("Order", "Home", FormMethod.Post))
             {
                 <div class="first-step order-step">
@@ -36,43 +36,235 @@
                             @Html.TextBoxFor(m => m.Subject, new { @placeholder = "По какому предмету пишется работа?" })
                         </span>
                     </div>
-                    <div class="next-button">Дальше, к шагу 2</div>
-                </div>
-                <div class="second-step order-step" style="display: none;">
                     <div class="order-row">
-                        <span class="order-label">Тема работы <p class="asterisk">*</p></span>
+                        <span class="order-label">Что требуется</span>
                         <span class="order-field">
-                            @Html.TextAreaFor(m => m.WorkSubject, new { @placeholder = "Напишите тему вашей работы, по возможности полностью" })
+                            @Html.TextAreaFor(m => m.Description, new { @placeholder = "Напишите развёрнуто требования к работе или какие-то нюансы, если они есть" })
                         </span>
                     </div>
                     <div class="order-row">
-                        <span class="order-label">Тип работы <p class="asterisk">*</p></span>
+                        <span class="order-label">Когда нужна работа</span>
                         <span class="order-field">
-                            @Html.TextBoxFor(m => m.WorkType)
+                            @Html.TextBoxFor(m => m.Date, new { @placeholder = "Введите дату" })
                         </span>
                     </div>
                     <div class="order-row">
-                        <span class="order-label">Предмет</span>
+                        <span class="order-label">Почта <p class="asterisk">*</p></span>
                         <span class="order-field">
-                            @Html.TextBoxFor(m => m.Subject, new { @placeholder = "По какому предмету пишется работа?" })
+                            @Html.TextBoxFor(m => m.Email, new { @placeholder = "Ваш e-mail" })
                         </span>
                     </div>
-                    <div class="next-button">Дальше, к шагу 3</div>
+                    <div class="order-row">
+                        <span class="order-label">Телефон</span>
+                        <span class="order-field">
+                            @Html.TextBoxFor(m => m.Phone, new { @placeholder = "Например +79212712233" })
+                        </span>
+                    </div>
+                    <div class="next-button" onclick="submit()">Узнать цену сейчас</div>
                 </div>
             }
         </div>
-
-        @*<h2>Контактная информация:</h2>
-        <br/>
-        <div class="contacts-data">
-            <p>Советская, 83 (антикафе "Вместе")</p>
-            <p><b>Телефоны:</b></p>
-            <p>+7-953-916-0500</p>
-            <p>(3822) 50-74-89</p>
-            <p>(+7-913-820-7489)</p>
-            <p><b>E-mail:</b> scienceplus@yandex.ru</p>
-            <p><b>ICQ:</b> 363-416-407</p>
-            <p><a href="http://vk.com/hellostudentru">http://vk.com/hellostudentru</a></p>
-        </div>*@
+        <div class="order-right">
+            <p>Также работу на оценку можно прислать Нам и старым, проверенным способом, через почту. Для более оперативного ответа по Вашему заказу в этом случае просим Вас связаться с нами одним из следующих способов:</p>
+            <div class="contacts-data">
+                <p>Советская, 83 (антикафе "Вместе")</p>
+                <p><b>Телефоны:</b></p>
+                <p>+7-953-916-0500</p>
+                <p>(3822) 50-74-89</p>
+                <p>(+7-913-820-7489)</p>
+                <p><b>E-mail:</b> scienceplus@yandex.ru</p>
+                <p><b>ICQ:</b> 363-416-407</p>
+                <p><a href="http://vk.com/hellostudentru">http://vk.com/hellostudentru</a></p>
+            </div>
+        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function submit() {
+        jValOrder.errors = false;
+        jValOrder.name();
+        jValOrder.email();
+        jValOrder.login();
+        jValOrder.cipher();
+        jValOrder.subject();
+
+        if (!jValOrder.errors) {
+            $('form').submit();
+        }
+    }
+
+    var jValOrder = {
+        'WorkSubject': function () {
+            var ele = $('#WorkSubject');
+            var pos = ele.position();
+            ele.parent().append('<div id="WorkSubjectInfo" class="info"></div>');
+            var nameInfo = $('#WorkSubjectInfo');
+
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+            if ($.trim(ele.val()).length < 3) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Введите ФИО').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'login': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Login"]') : $('#tusurOrderForm input[name="Login"]');
+            var pos = ele.position();
+            ele.parent().append('<div id="loginInfo" class="info"></div>');
+            var nameInfo = $('#loginInfo');
+            debugger;
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+            if ($.trim(ele.val()).length < 3) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Введите Логин от системы ФДО ТУСУР').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'cipher': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Cipher"]') : $('#tusurOrderForm input[name="Cipher"]');
+            var pos = ele.position();
+            ele.parent().append('<div id="cipherInfo" class="info"></div>');
+            var nameInfo = $('#cipherInfo');
+
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+
+            if ($.trim(ele.val()).length < 3) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Введите Шифр').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'subject': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Subject"]') : $('#tusurOrderForm input[name="Subject"]');
+            var pos = ele.position();
+            ele.parent().append('<div id="subjectInfo" class="info"></div>');
+            var nameInfo = $('#subjectInfo');
+
+            nameInfo.css({
+                top: pos.top - 1,
+                left: pos.left + ele.width() + 15
+            });
+
+            if ($.trim(ele.val()).length < 3) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Введите Дисциплину').show();
+                nameInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong');
+            } else if (ele.val().length > 255) {
+                jValOrder.errors = true;
+                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                nameInfo.prev().addClass('error-input');
+            } else {
+                nameInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                nameInfo.prev().removeClass('error-input');
+            }
+        },
+        'email': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Email"]') : $('#tusurOrderForm input[name="Email"]');
+            var pos = ele.offset();
+            ele.parent().append('<div id="emailInfo" class="info"></div>');
+            var emailInfo = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst #emailInfo:first') : $('#tusurOrderForm #emailInfo:first');
+
+            emailInfo.css({
+                top: pos.top + 4,
+                left: pos.left + ele.width() + 25
+            });
+
+            var patt = /^.+@@.+[.].{2,}$/i;
+
+            if ($.trim(ele.val()).length > 0) {
+                if (!patt.test(ele.val())) {
+                    jValOrder.errors = true;
+                    emailInfo.addClass('error').html('Введите корректный Email').show();
+                    ele.removeClass('normal').addClass('wrong');
+                    emailInfo.prev().addClass('error-input');
+                } else if (ele.val().length > 50) {
+                    jValOrder.errors = true;
+                    emailInfo.addClass('error').html('Превышен максимальный размер 50 символов').show();
+                    ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                    emailInfo.prev().addClass('error-input');
+                } else {
+                    emailInfo.removeClass('error');
+                    ele.removeClass('wrong').addClass('normal');
+                    emailInfo.prev().removeClass('error-input');
+                }
+            } else {
+                jValOrder.errors = true;
+                emailInfo.addClass('error').html('Введите Email').show();
+                emailInfo.prev().addClass('error-input');
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+            }
+        },
+        'phone': function () {
+            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Phone"]') : $('#tusurOrderForm input[name="Phone"]');
+            var pos = ele.position();
+            ele.parent().append('<div id="phoneInfo" class="info"></div>');
+            var phoneInfo = $('#phoneInfo');
+
+            phoneInfo.css({
+                top: pos.top + 4,
+                left: pos.left + ele.width() + 25
+            });
+
+            var patt = /^([\+]{1})?[0-9\-]*$/i;
+
+            if (ele.val().length != 0 && (ele.val().length > 15 || ele.val().length < 5 || !patt.test(ele.val()))) {
+                jValOrder.errors = true;
+                phoneInfo.addClass('error').html('Введите корректный номер телефона').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                phoneInfo.prev().addClass('error-input');
+            } else if (ele.val().length == 0) {
+                jValOrder.errors = true;
+                phoneInfo.addClass('error').html('Введите номер телефона').show();
+                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
+                phoneInfo.prev().addClass('error-input');
+            } else {
+                phoneInfo.removeClass('error');
+                ele.removeClass('wrong').addClass('normal');
+                phoneInfo.prev().removeClass('error-input');
+            }
+        }
+    };
+</script>

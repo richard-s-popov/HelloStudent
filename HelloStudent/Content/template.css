@@ -1728,13 +1728,22 @@ table#main_table tr.subheader td{
     height: 400px;
 }
 
+.contacts .order-right {
+    float: right;
+    width: 230px;
+    padding-top: 50px;
+}
+
 .contacts .contacts-data p {
     padding: 0 0 5px 0;
 }
 
 .contacts .order-form {
-    background: #06ABD1 url('../Content/img/arrow-form.png') no-repeat bottom center;
+    background: #62C9E0 url('../Content/img/arrow-form.png') no-repeat bottom center;
     padding-top: 40px;
+    width: 600px;
+    float: left;
+    margin-bottom: 100px;
 }
 
 .contacts .order-form h3 {
@@ -1751,7 +1760,7 @@ table#main_table tr.subheader td{
 .contacts .order-form .order-step .next-button {
     width: 272px;
     padding: 15px 0;
-    margin: 0 0 0 315px;
+    margin: 0 0 0 165px;
     border: 1px solid #3BD9F3;
     border-bottom: 0;
     clear: left;
@@ -1777,7 +1786,7 @@ table#main_table tr.subheader td{
 .contacts .order-form .order-step .next-button:hover {
     width: 272px;
     padding: 15px 0;
-    margin: 0 0 0 315px;
+    margin: 0 0 0 165px;
     border: 1px solid #3BD9F3;
     border-bottom: 0;
     margin-top: 50px;
