@@ -1143,6 +1143,11 @@ fieldset.word, fieldset.only {
     color: black;
 }
 
+.popup table textarea {
+    padding: 5px;
+    font-family: Arial;
+}
+
 .popup table input {
     width: 180px;
     height: 30px;
