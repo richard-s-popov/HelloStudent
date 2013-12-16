@@ -10,15 +10,17 @@
       <title>@ViewBag.Title</title>
       <link href="/joomla_26072/templates/theme376/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
       <script type="text/javascript" src="@Url.Content("~/Scripts/mootools.js")"></script>
-       <script type="text/javascript" src="@Url.Content("~/Scripts/caption.js")"></script>
+      <script type="text/javascript" src="@Url.Content("~/Scripts/caption.js")"></script>
       @Styles.Render("~/Content/css")
+      @Styles.Render("~/Content/themes/base/css")
       @Scripts.Render("~/bundles/modernizr")
       @Scripts.Render("~/bundles/jquery")
+      @Scripts.Render("~/bundles/jqueryui")
       @RenderSection("scripts", required: false)
-       <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.fancybox-1.3.4.js")"></script>
+      <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.fancybox-1.3.4.js")"></script>
       <link rel="stylesheet" href="@Url.Content("~/Content/template.css")" type="text/css"/>
-       <link rel="stylesheet" href="@Url.Content("~/Content/constant.css")" type="text/css"/>
-       <link rel="stylesheet" href="@Url.Content("~/Content/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" />
+      <link rel="stylesheet" href="@Url.Content("~/Content/constant.css")" type="text/css"/>
+      <link rel="stylesheet" href="@Url.Content("~/Content/fancybox/jquery.fancybox-1.3.4.css")" type="text/css" />
       <!--[if IE 6]>
       <script type="text/javascript" src="/joomla_26072/templates/theme376/scripts/ie_png.js"></script>
       <script type="text/javascript">

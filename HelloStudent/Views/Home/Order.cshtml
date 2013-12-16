@@ -5,6 +5,22 @@
 @model HelloStudent.Models.OrderModel
 
 <div class="order-container">
+    @if (ViewBag.Finish)
+    {
+        <div class="congratulations">
+            <h2>Спасибо!</h2>
+            <p>Номер Вашей заявки №@Model.OrderNumber</p>
+            <p>На Вашу почту @Model.Email отправлено информационное письмо.</p>
+            <h3>Что дальше?</h3>
+            <p>1. Менеджер подберет специалиста и сообщит Вам стоимость такой работы.</p>
+            <p>2. Вам останется принять решение.</p>
+            <h3>Принимая решение, Вы должны знать, что:</h3>
+            <p>... работа не будет скачанной из Интернета.</p>
+            <p>... работа будет уникальной, написанной по Вашим требованиям.</p>
+            <p>... при написании работы, автор будет пользоваться книгами и оригинальными источниками.</p>
+            <p>... что замечания устраним бесплатно, пока результат не устроит преподавателя.</p>
+        </div>
+    }
     <div class="title-page">
         <h1>Заказ работ</h1>
     </div>
@@ -15,7 +31,7 @@
         
         <div class="order-form">
             <h3>Узнайте прямо сейчас сколько стоит написать Вашу работу</h3>
-            @using (Html.BeginForm("Order", "Home", FormMethod.Post))
+            @using (Html.BeginForm("OrderFinish", "Home", FormMethod.Post))
             {
                 <div class="first-step order-step">
                     <div class="order-row">
@@ -27,7 +43,94 @@
                     <div class="order-row">
                         <span class="order-label">Тип работы <p class="asterisk">*</p></span>
                         <span class="order-field">
-                            @Html.TextBoxFor(m => m.WorkType)
+                            @Html.DropDownListFor(m => m.WorkType, new List<SelectListItem>
+                                {
+                                    new SelectListItem
+                                        {
+                                            Text = "Дипломная работа",
+                                            Value = "Дипломная работа"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Часть дипломной работы",
+                                            Value = "Часть дипломной работы"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Отчет о практике",
+                                            Value = "Отчет о практике"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Курсовая с практикой",
+                                            Value = "Курсовая с практикой"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Курсовая теория",
+                                            Value = "Курсовая теория"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Реферат",
+                                            Value = "Реферат"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Реферат для асперантуры",
+                                            Value = "Реферат для асперантуры"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Презентация в PowerPoint",
+                                            Value = "Презентация в PowerPoint"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Задачи",
+                                            Value = "Задачи"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Контрольная работа",
+                                            Value = "Контрольная работа"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Тест",
+                                            Value = "Тест"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Чертежи",
+                                            Value = "Чертежи"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Юридическая консультация",
+                                            Value = "Юридическая консультация"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Поиск информации",
+                                            Value = "Поиск информации"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Эссе",
+                                            Value = "Эссе"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Сопроводительные материалы к диплому",
+                                            Value = "Сопроводительные материалы к диплому"
+                                        },
+                                    new SelectListItem
+                                        {
+                                            Text = "Другое",
+                                            Value = "Другое"
+                                        }
+                                })
                         </span>
                     </div>
                     <div class="order-row">
@@ -60,7 +163,15 @@
                             @Html.TextBoxFor(m => m.Phone, new { @placeholder = "Например +79212712233" })
                         </span>
                     </div>
-                    <div class="next-button" onclick="submit()">Узнать цену сейчас</div>
+                    <div class="order-row">
+                        <span class="order-label"></span>
+                        <span class="order-field">
+                            <span style="margin-top: 5px; display: inline-block; padding-top: 10px; border-top: 1px solid rgb(240, 240, 240); width: 275px; text-align: center;">
+                                <p class="asterisk">*</p> Обязательные для заполнения поля
+                            </span>
+                        </span>
+                    </div>
+                    <div class="next-button" onclick="submitOrder()">Узнать цену сейчас</div>
                 </div>
             }
         </div>
@@ -81,13 +192,37 @@
 </div>
 
 <script type="text/javascript">
-    function submit() {
+    $.datepicker.regional['ru'] = {
+        clearText: 'Очистить', clearStatus: '',
+        minDate: "0",
+        closeText: 'Закрыть', closeStatus: '',
+        prevText: '<Пред', prevStatus: '',
+        nextText: 'След>', nextStatus: '',
+        currentText: 'Сегодня', currentStatus: '',
+        monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+            'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+            'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        monthStatus: '', yearStatus: '',
+        weekHeader: 'Не', weekStatus: '',
+        dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+        dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+        dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        dayStatus: 'DD', dateStatus: 'D, M d',
+        dateFormat: 'dd.mm.yy', firstDay: 1,
+        initStatus: '', isRTL: false,
+        onSelect: function () {
+            
+        }
+    };
+    
+    $('#Date').datepicker($.datepicker.regional["ru"]);
+
+    function submitOrder() {
         jValOrder.errors = false;
-        jValOrder.name();
+        jValOrder.workSubject();
         jValOrder.email();
-        jValOrder.login();
-        jValOrder.cipher();
-        jValOrder.subject();
+        jValOrder.phone();
 
         if (!jValOrder.errors) {
             $('form').submit();
@@ -95,99 +230,20 @@
     }
 
     var jValOrder = {
-        'WorkSubject': function () {
-            var ele = $('#WorkSubject');
+        'workSubject': function () {
+            var ele = $('textarea[name="WorkSubject"]');
             var pos = ele.position();
-            ele.parent().append('<div id="WorkSubjectInfo" class="info"></div>');
-            var nameInfo = $('#WorkSubjectInfo');
-
-            nameInfo.css({
-                top: pos.top - 1,
-                left: pos.left + ele.width() + 15
-            });
-            if ($.trim(ele.val()).length < 3) {
-                jValOrder.errors = true;
-                nameInfo.addClass('error').html('Введите ФИО').show();
-                nameInfo.prev().addClass('error-input');
-                ele.removeClass('normal').addClass('wrong');
-            } else if (ele.val().length > 255) {
-                jValOrder.errors = true;
-                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
-                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
-                nameInfo.prev().addClass('error-input');
-            } else {
-                nameInfo.removeClass('error');
-                ele.removeClass('wrong').addClass('normal');
-                nameInfo.prev().removeClass('error-input');
-            }
-        },
-        'login': function () {
-            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Login"]') : $('#tusurOrderForm input[name="Login"]');
-            var pos = ele.position();
-            ele.parent().append('<div id="loginInfo" class="info"></div>');
-            var nameInfo = $('#loginInfo');
-            debugger;
-            nameInfo.css({
-                top: pos.top - 1,
-                left: pos.left + ele.width() + 15
-            });
-            if ($.trim(ele.val()).length < 3) {
-                jValOrder.errors = true;
-                nameInfo.addClass('error').html('Введите Логин от системы ФДО ТУСУР').show();
-                nameInfo.prev().addClass('error-input');
-                ele.removeClass('normal').addClass('wrong');
-            } else if (ele.val().length > 255) {
-                jValOrder.errors = true;
-                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
-                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
-                nameInfo.prev().addClass('error-input');
-            } else {
-                nameInfo.removeClass('error');
-                ele.removeClass('wrong').addClass('normal');
-                nameInfo.prev().removeClass('error-input');
-            }
-        },
-        'cipher': function () {
-            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Cipher"]') : $('#tusurOrderForm input[name="Cipher"]');
-            var pos = ele.position();
-            ele.parent().append('<div id="cipherInfo" class="info"></div>');
-            var nameInfo = $('#cipherInfo');
+            ele.parent().append('<div id="workSubjectInfo" class="info"></div>');
+            var nameInfo = $('#workSubjectInfo');
 
             nameInfo.css({
                 top: pos.top - 1,
                 left: pos.left + ele.width() + 15
             });
 
-            if ($.trim(ele.val()).length < 3) {
+            if ($.trim(ele.val()).length == 0) {
                 jValOrder.errors = true;
-                nameInfo.addClass('error').html('Введите Шифр').show();
-                nameInfo.prev().addClass('error-input');
-                ele.removeClass('normal').addClass('wrong');
-            } else if (ele.val().length > 255) {
-                jValOrder.errors = true;
-                nameInfo.addClass('error').html('Превышен максимальный размер 255 символов').show();
-                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
-                nameInfo.prev().addClass('error-input');
-            } else {
-                nameInfo.removeClass('error');
-                ele.removeClass('wrong').addClass('normal');
-                nameInfo.prev().removeClass('error-input');
-            }
-        },
-        'subject': function () {
-            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Subject"]') : $('#tusurOrderForm input[name="Subject"]');
-            var pos = ele.position();
-            ele.parent().append('<div id="subjectInfo" class="info"></div>');
-            var nameInfo = $('#subjectInfo');
-
-            nameInfo.css({
-                top: pos.top - 1,
-                left: pos.left + ele.width() + 15
-            });
-
-            if ($.trim(ele.val()).length < 3) {
-                jValOrder.errors = true;
-                nameInfo.addClass('error').html('Введите Дисциплину').show();
+                nameInfo.addClass('error').html('Введите тему Вашей работы').show();
                 nameInfo.prev().addClass('error-input');
                 ele.removeClass('normal').addClass('wrong');
             } else if (ele.val().length > 255) {
@@ -202,10 +258,10 @@
             }
         },
         'email': function () {
-            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Email"]') : $('#tusurOrderForm input[name="Email"]');
+            var ele = $('input[name="Email"]');
             var pos = ele.offset();
             ele.parent().append('<div id="emailInfo" class="info"></div>');
-            var emailInfo = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst #emailInfo:first') : $('#tusurOrderForm #emailInfo:first');
+            var emailInfo = $('#emailInfo');
 
             emailInfo.css({
                 top: pos.top + 4,
@@ -238,7 +294,7 @@
             }
         },
         'phone': function () {
-            var ele = $('input[name="firstvisit"]:checked').val() == 1 ? $('#tusurOrderFormFirst input[name="Phone"]') : $('#tusurOrderForm input[name="Phone"]');
+            var ele = $('.order-row input[name="Phone"]');
             var pos = ele.position();
             ele.parent().append('<div id="phoneInfo" class="info"></div>');
             var phoneInfo = $('#phoneInfo');
@@ -253,11 +309,6 @@
             if (ele.val().length != 0 && (ele.val().length > 15 || ele.val().length < 5 || !patt.test(ele.val()))) {
                 jValOrder.errors = true;
                 phoneInfo.addClass('error').html('Введите корректный номер телефона').show();
-                ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
-                phoneInfo.prev().addClass('error-input');
-            } else if (ele.val().length == 0) {
-                jValOrder.errors = true;
-                phoneInfo.addClass('error').html('Введите номер телефона').show();
                 ele.removeClass('normal').addClass('wrong').css({ 'font-weight': 'normal' });
                 phoneInfo.prev().addClass('error-input');
             } else {

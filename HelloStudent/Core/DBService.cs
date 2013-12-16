@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using Domain;
 
 namespace HelloStudent.Core
@@ -20,6 +21,17 @@ namespace HelloStudent.Core
             var db = new HelloStudentEntities();
 
             return db.SiteContents.FirstOrDefault();
+        }
+
+        public int OrderCounter()
+        {
+            var conf = WebConfigurationManager.OpenWebConfiguration("/");
+            var count = Convert.ToInt32(conf.AppSettings.Settings["OrderCounter"].Value);
+
+            conf.AppSettings.Settings["OrderCounter"].Value = Convert.ToString(++count);
+            conf.Save();
+
+            return count;
         }
 
         public void SaveMainContent(string content)

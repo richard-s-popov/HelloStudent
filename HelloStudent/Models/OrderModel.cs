@@ -14,12 +14,14 @@ namespace HelloStudent.Models
 
         public string Description { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public string WorkSubject { get; set; }
 
         public string WorkType { get; set; }
 
         public string Subject { get; set; }
+
+        public int OrderNumber { get; set; }
     }
 }

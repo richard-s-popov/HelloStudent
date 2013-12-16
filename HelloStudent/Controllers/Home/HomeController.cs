@@ -143,12 +143,6 @@ namespace HelloStudent.Controllers.Home
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult OrderFinish(OrderModel model)
-        {
-            return View();
-        }
-
         public ActionResult MainPageContent(string password)
         {
             if (password == "123456aaa111")
@@ -375,9 +369,115 @@ namespace HelloStudent.Controllers.Home
             return View();
         }
 
-        public ActionResult Order()
+        public ActionResult Order(bool? finish, int? orderNumber, string email)
         {
-            return View();
+            var model = new OrderModel();
+
+            if (finish != null && finish.Value && orderNumber != null)
+            {
+                ViewBag.Finish = true;
+                model.OrderNumber = orderNumber.Value;
+                model.Email = email;
+            }
+            else
+            {
+                ViewBag.Finish = false;
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult OrderFinish(OrderModel model)
+        {
+            var service = new DBService();
+            model.OrderNumber = service.OrderCounter();
+
+            var em = new EmailMessage
+                {
+                    Message = string.Format("<b>Тема работы:</b> {0}<br/>" +
+                                        "<b>Тип работы:</b> {1}<br/>" +
+                                        "<b>Предмет:</b> {2}<br/>" +
+                                        "<b>Что требуется:</b> {3}<br/>" +
+                                        "<b>Когда нужна работа:</b> {4}<br/>" +
+                                        "<b>E-mail:</b> {5}<br/>" +
+                                        "<b>Тел.:</b> {6}<br/>",
+                                        model.WorkSubject,
+                                        model.WorkType,
+                                        model.Subject,
+                                        model.Description,
+                                        model.Date.Value.ToShortDateString(),
+                                        model.Email,
+                                        model.Phone),
+                    DisplayNameFrom = "HelloStudent.ru",
+                    From = "student.hello@yandex.ru",
+                    Subject = string.Format("Заказ работы (Заявка №{0})", model.OrderNumber),
+                    To = "student.hello@yandex.ru"
+                };
+
+            EmailService.SendMessage(em,
+                    "student.hello@yandex.ru",
+                    "123456aaa111",
+                    "smtp.yandex.ru",
+                    587,
+                    true);
+
+            var emToClient = new EmailMessage
+                {
+                    Message = string.Format("Добрый день{0}!<br/>" +
+                                            "Спасибо, за интерес к проекту <b>\"Привет, студент!\"</b> Ваша заявка поступила на оценку.<br/><br/>" +
+                                            "Вашей заявке присвоен номер <b>{1}</b><br/><br/>" +
+                                            "Пожалуйста, проверьте данные:<br/>" +
+                                            "Ваша почта <b>{2}</b><br/>" +
+                                            "Ваш телефон <b>{3}</b><br/>" +
+                                            "Тема: <b>{4}</b><br/>" +
+                                            "Дисциплина: <b>{5}</b><br/>" +
+                                            "Тип работ: <b>{6}</b><br/><br/>" +
+                                            "Работа необходима Вам к <b>{7}</b><br/><br/>" +
+                                            "На стоимость влияет срок сдачи, в который будет сдаваться работа. " +
+                                            "Если Вы ошиблись в данных, то ответным письмом пришлите правильные.<br/><br/>" +
+                                            "<b>!!! Если есть методичка к работе или любые другие дополнительные требования - " +
+                                            "пожалуйста, пришлите ответным письмом.</b><br/><br/>" +
+                                            "Наши специалисты произведут оценку стоимости Вашей работы.<br/><br/>" +
+                                            "Как мы работаем:<br/>" +
+                                            "1. Менеджер подберет специалиста, который точно сможет написать Вашу работу " +
+                                            "и \"зарезервирует\" автора.<br/>" +
+                                            "2. Дадим Вам ответ о стоимости, сроках и условиях сотрудничества.<br/>" +
+                                            "3. Вы принимаете решение о сотрудничестве.<br/><br/>" +
+                                            "Заказывая написание студенческой работы в компании <b>\"Привет, студент!\"</b>:<br/>" +
+                                            "Вы будете уверены в качестве выполненной работы, т.к. у нас работают" +
+                                            "квалифицированные специалисты, которые профессионально " +
+                                            "занимаются написанием студенческих работ.<br/>" +
+                                            "Вы в любой момент получите ответы, на все интересующие вопросы. Ваш заказ будет" +
+                                            "курировать персональный менеджер. Есть возможность поэтапной сдачи работы преподавателю.<br/>" +
+                                            "Мы заинтересованы в долгосрочном сотрудничестве в написании для Вас студенческих" +
+                                            "работ и в Ваших рекомендациях друзьям, " +
+                                            "поэтому максимально эффективно подбираем специалиста.<br/><br/>" +
+                                            "<b>\"Привет, студент!\"</b> - онлайн друг современного студента<br/>" +
+                                            "Сайт проекта <a href=\"www.hellostudent.ru\">www.hellostudent.ru</a><br/>" +
+                                            "<b>+7-953-916-0500</b>",
+                                            string.Empty,
+                                            model.OrderNumber,
+                                            model.Email,
+                                            model.Phone,
+                                            model.WorkSubject,
+                                            model.Subject,
+                                            model.WorkType,
+                                            model.Date.Value.ToShortDateString()),
+                    DisplayNameFrom = "HelloStudent.ru",
+                    From = "student.hello@yandex.ru",
+                    Subject = string.Format("Заказ работы (Заявка №{0})", model.OrderNumber),
+                    To = model.Email
+                };
+
+            EmailService.SendMessage(emToClient,
+                    "student.hello@yandex.ru",
+                    "123456aaa111",
+                    "smtp.yandex.ru",
+                    587,
+                    true);
+
+            return RedirectToAction("Order", new {finish = true, orderNumber = model.OrderNumber, email = model.Email});
         }
     }
 }
